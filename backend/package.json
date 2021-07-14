@@ -4,7 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:create": "dotenv sequelize-cli db:create",
+    "db:drop": "dotenv sequelize-cli db:drop",
+    "db:migrate": "dotenv sequelize-cli db:migrate",
+    "db:migrate:undo:all": "dotenv sequelize-cli db:migrate:undo:all",
+    "db:redo": "npm run db:seed:undo:all && npm run db:migrate:undo:all && npm run db:migrate && npm run db:seed:all",
+    "db:seed:all": "dotenv sequelize-cli db:seed:all",
+    "db:seed:undo:all": "dotenv sequelize-cli db:seed:undo:all",
+    "migration:generate": "sequelize-cli migration:generate",
+    "model:generate": "sequelize-cli model:generate",
+    "seed:generate": "sequelize-cli seed:generate"
   },
   "keywords": [],
   "author": "",
