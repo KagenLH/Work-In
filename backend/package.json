@@ -13,7 +13,10 @@
     "db:seed:undo:all": "dotenv sequelize-cli db:seed:undo:all",
     "migration:generate": "sequelize-cli migration:generate",
     "model:generate": "sequelize-cli model:generate",
-    "seed:generate": "sequelize-cli seed:generate"
+    "seed:generate": "sequelize-cli seed:generate",
+    "start": "per-env",
+    "start:development": "nodemon -r dotenv/config ./bin/www",
+    "start:production": "node ./bin/www"
   },
   "keywords": [],
   "author": "",
