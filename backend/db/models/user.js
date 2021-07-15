@@ -56,12 +56,13 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
-  User.prototype.toSafeObject = () => {
+  User.prototype.toSafeObject = function () {
     const { id, username, email, avatarUrl } = this;
     return { id, username, email, avatarUrl };
   };
 
-  User.prototype.validatePassword = (password) => {
+  User.prototype.validatePassword = function (password) {
+    console.log(this);
     return bcrypt.compareSync(password, this.hashedPassword.toString());
   };
 
@@ -79,7 +80,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     });
-
+    console.log(user);
     if(user && user.validatePassword(password)) {
       return await User.scope('currentUser').findByPk(user.id);
     }
