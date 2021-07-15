@@ -51,6 +51,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
+  
   User.associate = function(models) {
     // associations can be defined here
   };
@@ -95,6 +96,6 @@ module.exports = (sequelize, DataTypes) => {
 
     return await User.scope('currentUser').findByPk(user.id);
   };
-  
+
   return User;
 };
