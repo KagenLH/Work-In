@@ -4,6 +4,8 @@ const asyncHandler = require("express-async-handler");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { User } = require("../../db/models");
 
+const router = express.Router();
+
 // Log in route
 router.post('/', asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
@@ -24,7 +26,5 @@ router.post('/', asyncHandler(async (req, res, next) => {
         user
     });
 }));
-
-const router = express.Router();
 
 module.exports = router;
