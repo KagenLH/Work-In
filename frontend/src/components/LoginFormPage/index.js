@@ -3,6 +3,8 @@ import { loginUser } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import './LoginForm.css';
+
 
 export default function LoginFormPage() {
     const [credential, setCredential] = useState('');
@@ -42,7 +44,12 @@ export default function LoginFormPage() {
                 className="login-form auth-form"
                 onSubmit={handleSubmit}
             >
-                <label htmlFor="credential">Username or E-Mail</label>
+                <label
+                    htmlFor="credential"
+                    className="auth-form__label"
+                >
+                    Username or E-Mail
+                </label>
                 <input
                     type="text" 
                     name="credential"
@@ -51,7 +58,12 @@ export default function LoginFormPage() {
                     value={credential}
                     onChange={(e) => setCredential(e.target.value)}
                     />
-                <label htmlFor="password">Password</label>
+                <label 
+                    htmlFor="password"
+                    className="auth-form__label"
+                    >
+                        Password
+                    </label>
                 <input
                     type="text"
                     name="password"
@@ -61,6 +73,7 @@ export default function LoginFormPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     />
                 <button
+                    className="auth-form__button"
                     disabled={validationErrors.length ? true : false}
                     >
                     Login 
