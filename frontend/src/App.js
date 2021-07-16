@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { restoreLogin } from "./store/session";
 
 import LoginFormPage from "./components/LoginFormPage";
+import SignupFormPage from "./components/SignupForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
     <Switch>
       <Route path="/login">
         <LoginFormPage/>
+      </Route>
+      <Route path="/signup">
+        <SignupFormPage/>
       </Route>
     </Switch>
   );

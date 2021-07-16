@@ -32,9 +32,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     avatarUrl: {
       type: DataTypes.STRING,
-      validate: {
-        len: [5, 1000]
-      },
     },
   }, {
     defaultScope: {
