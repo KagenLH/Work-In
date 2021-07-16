@@ -1,0 +1,34 @@
+.nav-bar {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 8%;
+    width: 100%;
+    background-color: black;
+}
+
+.nav-link {
+    color: rgb(70, 67, 67);
+    height: auto;
+    width: 100px;
+    background-color: rgb(231, 230, 230);
+    text-decoration: none;
+    margin: 5px;
+    text-align: center;
+    line-height: 100%;
+    vertical-align: middle;
+    padding: 5%;
+}
+
+.nav-link-active {
+    color: rgb(84, 4, 98);
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin-right: 10px;
+}

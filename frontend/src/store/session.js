@@ -39,7 +39,9 @@ export const restoreLogin = () => async dispatch => {
 
     if(res.ok) {
         const user = await res.json();
-        dispatch(createSession(user));
+        if(user.user !== null) {
+            dispatch(createSession(user));
+        }
         return user;
     }
 }
