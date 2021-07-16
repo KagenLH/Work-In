@@ -15,7 +15,7 @@ function App() {
       await dispatch(restoreLogin());
       setIsLoaded(true);
     } catch (e) {
-      console.log("Something went wrong with the login.");
+
     }
   })
 
