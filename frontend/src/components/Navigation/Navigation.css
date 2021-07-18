@@ -3,26 +3,27 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 8%;
+    height: 4%;
     width: 100%;
-    background-color: black;
 }
 
 .nav-link {
     color: rgb(70, 67, 67);
     height: auto;
     width: 100px;
-    background-color: rgb(231, 230, 230);
     text-decoration: none;
     margin: 5px;
     text-align: center;
     line-height: 100%;
     vertical-align: middle;
-    padding: 5%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav-link-active {
-    color: rgb(84, 4, 98);
+    color: salmon
+}
+
+.nav-link:hover {
     font-weight: bold;
 }
 

@@ -15,7 +15,7 @@ export default function Navigation() {
     return (
         <div className="nav-bar">
             <ul className="nav-links">
-                <NavLink to="/" className="nav-link" activeClassName="nav-link-active">Home</NavLink>
+                <NavLink exact to="/" className="nav-link" activeClassName="nav-link-active">Home</NavLink>
                 {sessionUser !== null ? 
                 <ProfileButton onClick={handleLogout} className="logout-button" user={sessionUser}/>
                 :

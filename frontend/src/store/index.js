@@ -2,9 +2,12 @@ import { createHistogram, combineReducers, applyMiddleware, compose, createStore
 import thunk from 'redux-thunk';
 
 import sessionReducer from './session';
+import { loginModalReducer, signupModalReducer } from "./modals";
 
 const rootReducer = combineReducers({
-    session: sessionReducer
+    session: sessionReducer,
+    loginModal: loginModalReducer,
+    signupModalReducer: signupModalReducer,
 });
 
 let enhancer;

@@ -1,0 +1,35 @@
+.homepage {
+    position: fixed;
+    display: flex;
+    top: 4%;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./office.jpg');
+}
+
+.homepage__search-input {
+    padding: 9px;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.homepage__search-input:focus {
+    outline: none;
+    border: 2px solid salmon;
+}
+
+.homepage__search {
+    width: 40%;
+    display: flex;
+    transform: translateX(30%);
+}
+
+.homepage__search-submit {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

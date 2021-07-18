@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { restoreLogin } from "./store/session";
 
-import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupForm";
 import Navigation from "./components/Navigation";
+import HomePage from "./components/HomePage";
+import LoginModal from "./components/LoginFormPage/Modal";
 
 function App() {
   const dispatch = useDispatch();
+
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(async () => {
     try {
@@ -23,8 +25,11 @@ function App() {
     <>
       <Navigation/>
       <Switch>
+        <Route exact path="/">
+          <HomePage/>
+        </Route>
         <Route path="/login">
-          <LoginFormPage/>
+          <LoginModal/>
         </Route>
         <Route path="/signup">
           <SignupFormPage/>
