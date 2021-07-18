@@ -1,27 +1,41 @@
-const SHOW_MODAL = '/modals/SHOW_MODAL';
-const CLOSE_MODAL = '/modals/CLOSE_MODAL';
+const SHOW_LOGIN_MODAL = '/modals/SHOW_LOGIN_MODAL';
+const CLOSE_LOGIN_MODAL = '/modals/CLOSE_LOGIN_MODAL';
+const SHOW_SIGNUP_MODAL = '/modals/SHOW_SIGNUP_MODAL';
+const CLOSE_SIGNUP_MODAL = '/modals/CLOSE_SIGNUP_MODAL';
 
-const showModal = () => {
+export const showLoginModal = () => {
     return {
-        type: SHOW_MODAL
+        type: SHOW_LOGIN_MODAL
     };
 };
 
-const closeModal = () => {
+export const closeLoginModal = () => {
     return {
-        type: SHOW_MODAL
+        type: CLOSE_LOGIN_MODAL
     };
 };
 
-const initalState = {
+export const showSignupModal = () => {
+    return {
+        type: SHOW_SIGNUP_MODAL
+    };
+}
+
+export const closeSignupModal = () => {
+    return {
+        type: CLOSE_SIGNUP_MODAL
+    }
+}
+
+const initialState = {
     showModal: false
 }
 
 export const loginModalReducer = (state=initialState, action) => {
     switch (action.type) {
-        case SHOW_MODAL:
+        case SHOW_LOGIN_MODAL:
             return { showModal: true };
-        case CLOSE_MODAL:
+        case CLOSE_LOGIN_MODAL:
             return { showModal: false };
         default:
             return state;
@@ -30,9 +44,9 @@ export const loginModalReducer = (state=initialState, action) => {
 
 export const signupModalReducer = (state=initialState, action) => {
     switch (action.type) {
-        case SHOW_MODAL:
+        case SHOW_SIGNUP_MODAL:
             return { showModal: true };
-        case CLOSE_MODAL:
+        case CLOSE_SIGNUP_MODAL:
             return { showModal: false };
         default:
             return state;

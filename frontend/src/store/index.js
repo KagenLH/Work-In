@@ -7,7 +7,7 @@ import { loginModalReducer, signupModalReducer } from "./modals";
 const rootReducer = combineReducers({
     session: sessionReducer,
     loginModal: loginModalReducer,
-    signupModalReducer: signupModalReducer,
+    signupModal: signupModalReducer,
 });
 
 let enhancer;

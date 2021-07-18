@@ -1,11 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import ProfileButton from './ProfileButton';
+import { showLoginModal, showSignupModal} from '../../store/modals';
+
 import './Navigation.css';
 
 
 export default function Navigation() {
+    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
     const handleLogout = () => {
@@ -20,8 +23,8 @@ export default function Navigation() {
                 <ProfileButton onClick={handleLogout} className="logout-button" user={sessionUser}/>
                 :
                 <>
-                <NavLink to="/signup" className="nav-link" activeClassName="nav-link-active">Sign Up</NavLink>
-                <NavLink to="/login" className="nav-link" activeClassName="nav-link-active">Login</NavLink>
+                <button onClick={() => dispatch(showSignupModal())}>Sign Up</button>
+                <button onClick={() => dispatch(showLoginModal())}>Login</button>
                 </>}
             </ul>
         </div>
