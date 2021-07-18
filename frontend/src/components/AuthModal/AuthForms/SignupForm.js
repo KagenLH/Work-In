@@ -13,17 +13,17 @@ export default function SignupForm() {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const errors = [];
+    // useEffect(() => {
+    //     const errors = [];
 
-        if(password !== confirmPassword) errors.push("Password fields must match.");
-        if(!username.length) errors.push("Username is required for signup.");
-        if(!email.length) errors.push("Email is required for signup.");
-        if(!password.length) errors.push("Password is required for signup.");
-        if(!confirmPassword.length) errors.push("You must confirm your password for signup.");
+    //     if(password !== confirmPassword) errors.push("Password fields must match.");
+    //     if(!username.length) errors.push("Username is required for signup.");
+    //     if(!email.length) errors.push("Email is required for signup.");
+    //     if(!password.length) errors.push("Password is required for signup.");
+    //     if(!confirmPassword.length) errors.push("You must confirm your password for signup.");
         
-        setValidationErrors(errors);
-    }, [username, email, password, confirmPassword])
+    //     setValidationErrors(errors);
+    // }, [username, email, password, confirmPassword])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,17 +44,9 @@ export default function SignupForm() {
                 className="signup-form auth-form"
                 onSubmit={handleSubmit}
             >
-                <ul
-                    className="auth-errors-list"
-                >
-                    {validationErrors.map(error => (
-                        <li key={error} className="auth-error">{error}</li>
-                    ))}
-                </ul>
-                <label
+                <div
                     className="auth-form__label"
                 >
-                    Username: 
                     <input
                         type="text"
                         name="username"
@@ -64,11 +56,15 @@ export default function SignupForm() {
                         required
                     >
                     </input>
-                </label>
-                <label
+                    <span
+                        className="floating-label"
+                    >
+                        Username
+                    </span>
+                </div>
+                <div
                     className="auth-form__label"
-                >
-                    Email: 
+                > 
                     <input
                         type="email"
                         name="email"
@@ -78,11 +74,15 @@ export default function SignupForm() {
                         required
                     >
                     </input>
-                </label>
-                <label
+                    <span
+                        className="floating-label"
+                    >
+                        E-mail address
+                    </span>
+                </div>
+                <div
                     className="auth-form__label"
                 >
-                    Password: 
                     <input
                         type="password"
                         name="password"
@@ -92,11 +92,15 @@ export default function SignupForm() {
                         required
                     >
                     </input>
-                </label>
-                <label
+                    <span 
+                        className="floating-label"
+                    >
+                        Password
+                    </span>
+                </div>
+                <div
                     className="auth-form__label"
                 >
-                    Confirm Password: 
                     <input
                         type="password"
                         name="confirmPassword"
@@ -106,7 +110,12 @@ export default function SignupForm() {
                         required
                     >
                     </input>
-                </label>
+                    <span
+                        className="floating-label"
+                    >
+                        Confirm Password
+                    </span>
+                </div>
                 <button
                     className="auth-form__button"    
                     >

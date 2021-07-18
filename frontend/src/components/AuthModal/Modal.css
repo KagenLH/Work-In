@@ -18,10 +18,22 @@
 }
 
 .auth-modal__header {
-    height: 25px;
+    height: 60px;
     box-sizing: border-box;
+    margin-top: 5px;
+    padding: 10px;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.auth-modal__title {
+    margin-left: 110px;
+    font-size: 18px;
+}
+
+.auth-modal__title-login {
+    margin-left: 125px;
 }
 
 .auth-modal__body {
@@ -29,13 +41,33 @@
 }
 
 .auth-modal__close {
-    text-decoration: none;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
     margin: 5px;
-    margin-top: 5px;
-    font-size: 22px;
-    color: gray;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
 }
 
 .auth-modal__close:hover {
-    color: black;
+    background-color:rgba(0, 0, 0, 0.05)
+}
+
+.auth-modal__options-text {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-modal__options-button {
+    background-color: white;
+    margin: 5px;
+    border: none;
+    color: salmon;
+    cursor: pointer;
 }

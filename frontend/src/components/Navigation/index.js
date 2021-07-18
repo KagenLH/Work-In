@@ -23,8 +23,8 @@ export default function Navigation() {
                 <ProfileButton onClick={handleLogout} className="logout-button" user={sessionUser}/>
                 :
                 <>
-                <button onClick={() => dispatch(showSignupModal())}>Sign Up</button>
-                <button onClick={() => dispatch(showLoginModal())}>Login</button>
+                <button onClick={() => dispatch(showSignupModal())} className="nav-auth-button">Sign Up</button>
+                <button onClick={() => dispatch(showLoginModal())} className="nav-auth-button">Login</button>
                 </>}
             </ul>
         </div>

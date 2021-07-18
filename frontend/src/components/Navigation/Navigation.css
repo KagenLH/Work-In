@@ -8,19 +8,15 @@
 }
 
 .nav-link {
-    color: rgb(70, 67, 67);
+    color: black;
     height: auto;
-    width: 100px;
-    text-decoration: none;
     margin: 5px;
+    text-decoration: none;
     text-align: center;
     line-height: 100%;
-    vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-.nav-link-active {
-    color: salmon
+    padding-right: 0;
+    margin-right: 20px;
 }
 
 .nav-link:hover {
@@ -32,4 +28,20 @@
     height: 100%;
     align-items: center;
     margin-right: 10px;
+}
+
+.nav-auth-button {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    width: 75px;
+    font-size: 15px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nav-auth-button:hover {
+    font-weight: bold;
 }

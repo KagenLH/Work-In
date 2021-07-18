@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import './AuthForm.css';
+import { closeLoginModal } from '../../../store/modals';
 
 
 export default function LoginForm() {
@@ -13,23 +14,18 @@ export default function LoginForm() {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const errors = [];
-
-        if(!credential.length) errors.push("Must provide a username or email to login.");
-        if(!password.length) errors.push("Must provide a password to login.");
-
-        setValidationErrors(errors);
-    }, [credential, password]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = await dispatch(loginUser({credential, password}));
 
-        if(user) {
-            return (
-                <Redirect to="/"/>
-            )
+        if(credential.length && password.length) {
+            const user = await dispatch(loginUser({credential, password}));
+
+            if(user) {
+                dispatch(closeLoginModal());
+            } else {
+                
+            }
         }
     };
 
@@ -38,34 +34,43 @@ export default function LoginForm() {
                 className="login-form auth-form"
                 onSubmit={handleSubmit}
             >
-                <label
-                    htmlFor="credential"
+                <div
                     className="auth-form__label"
                 >
-                    Username or E-Mail
-                </label>
-                <input
-                    type="text" 
-                    name="credential"
-                    id="login-form__credential"
-                    className="auth-form__input"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
+                    <input
+                        type="text" 
+                        name="credential"
+                        id="login-form__credential"
+                        className="auth-form__input"
+                        value={credential}
+                        onChange={(e) => setCredential(e.target.value)}
+                        required
                     />
-                <label 
-                    htmlFor="password"
+                    <span 
+                        className="floating-label"
+                    >
+                        Username or Email
+                    </span>
+                </div>
+
+                <div
                     className="auth-form__label"
+                >
+                    <input
+                        type="password"
+                        name="password"
+                        className="auth-form__input"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <span
+                        className="floating-label"
                     >
                         Password
-                    </label>
-                <input
-                    type="text"
-                    name="password"
-                    id="login-form__password"
-                    className="auth-form__input"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    />
+                    </span>
+                </div>
+  
                 <button
                     className="auth-form__button"
                     disabled={validationErrors.length ? true : false}

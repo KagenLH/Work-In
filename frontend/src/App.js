@@ -35,9 +35,6 @@ function App() {
         <Route exact path="/">
           <HomePage/>
         </Route>
-        <Route path="/signup">
-          <SignupFormPage/>
-        </Route>
       </Switch>
     </>
   );
