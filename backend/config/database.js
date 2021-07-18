@@ -6,8 +6,6 @@ const password = db.password;
 const database = db.database;
 const host = db.host;
 
-console.log(database);
-
 module.exports = {
   development: {
     username,
