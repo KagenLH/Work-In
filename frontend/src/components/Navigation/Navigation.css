@@ -45,3 +45,26 @@
 .nav-auth-button:hover {
     font-weight: bold;
 }
+
+.open-menu-button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 1px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.open-menu-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.profile-dropdown {
+    position: absolute;
+    list-style: none;
+    background-color: white;
+    right: 5px;
+    top: 60px;
+    z-index: 99
+}

@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { closeLoginModal, closeSignupModal, showLoginModal, showSignupModal } from '../../store/modals';
+import { loginUser } from '../../store/session';
 import LoginForm from './AuthForms/LoginForm';
 import './Modal.css'
 import SignupFormPage from './AuthForms/SignupForm';
@@ -56,6 +57,13 @@ export default function Modal ({show, authType}) {
                         or
                         <button
                             className="auth-modal__options-button"
+                            onClick={() => {
+                                const user = dispatch(loginUser({credential: "Demo Manager", password: "password" }));
+                                if(user) {
+                                    if(authType === 'login') dispatch(closeLoginModal());
+                                    if(authType === 'signup') dispatch(closeSignupModal());
+                                }
+                            }}
                         >
                             Login as Demo user
                         </button>
