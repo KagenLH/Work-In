@@ -63,8 +63,17 @@
 .profile-dropdown {
     position: absolute;
     list-style: none;
-    background-color: white;
+    background-color: rgb(241, 240, 240);
     right: 5px;
-    top: 60px;
+    top: 40px;
+    padding: 10px;
+    border-radius: 5px;
     z-index: 99
+}
+
+.logout-button {
+    background-color: transparent;
+    border: none;
+    color: salmon;
+    cursor: pointer;
 }
