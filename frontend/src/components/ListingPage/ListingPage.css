@@ -1,0 +1,9 @@
+.listing-page-container {
+    position: fixed;
+    top: 7%;
+}
+
+.listing-page__listing-image {
+    width: 500px;
+    height: 300px;
+}

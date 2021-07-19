@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { loginUser } from '../../../store/session';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import './AuthForm.css';
 import { closeLoginModal } from '../../../store/modals';

@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { restoreLogin } from "./store/session";
 
-import SignupFormPage from "./components/AuthModal/AuthForms/SignupForm";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import Modal from "./components/AuthModal";
+import ListingPage from "./components/ListingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +34,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <HomePage/>
+        </Route>
+        <Route path="/listings/:id">
+          <ListingPage/>
         </Route>
       </Switch>
     </>

@@ -5,6 +5,7 @@
     align-items: center;
     height: 4%;
     width: 100%;
+    border-bottom: 1px solid lightgray;
 }
 
 .nav-link {
