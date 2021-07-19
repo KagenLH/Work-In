@@ -32,29 +32,61 @@ export default function ListingPage() {
                 setDescription(listing.description);
                 setPrice(listing.price);
                 setImages(listing.Images);
+
+                console.log(images);
+                console.log(listing);
             }
         })();
     }, [listingId]);
 
+
     return (
         <div
-        className="listing-page-container"
+        className="listing-page-container-outer"
         >
-            <ul>
-                <li>{name}</li>
-                <li>{address}</li>
-                <li>{city}</li>
-                <li>{state}</li>
-                <li>{country}</li>
-                <li>{description}</li>
-                <li>{price}</li>
-                <li>{images.map((image) => (
-                    <img
-                    className="listing-page__listing-image"
-                    key={image.id}
-                    src={image.url}/>
-                ))}</li>
-            </ul>
+            <div
+                className="listing-page-container"
+            >
+                <div
+                    className="listing-page__title-block"
+                >
+                    <div
+                        className="listing-page__title"
+                    >
+                        {name}
+                    </div>
+                    <div 
+                        className="listing-page__title-address"
+                    >
+                        {city}, {state}, {country}
+                    </div>
+                </div>
+                <div
+                    className="listing-page__images-block"
+                >
+                    <div 
+                        className="listing-page__images-images"
+                    >
+                        {images.map(image => (
+                            <img src={image.url} key={image.id}/>
+                        ))}
+                        <div 
+                            className="listing-page__cover-image-container"
+                        >
+                            <a
+                                className="listing-page__cover-image"
+                                href="/"
+                                // style={{backgroundImage: images[0].url}}
+                            />
+                        </div>
+                    </div>
+                    <div 
+                        className="listing-page__images-showall"
+                    >
+
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
