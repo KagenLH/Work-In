@@ -11,34 +11,32 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: Users }
+        references: { model: 'Users' }
       },
       address: {
         type: Sequelize.STRING,
         allowNull: false
       },
       city: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         allowNull: false
       },
       state: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(60),
         allowNull: false
       },
       country: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(60),
         allowNull: false
       },
       lat: {
         type: Sequelize.DECIMAL,
-        allowNull: false
       },
       lng: {
         type: Sequelize.DECIMAL,
-        allowNull: false
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(200),
         allowNull: false
       },
       description: {
