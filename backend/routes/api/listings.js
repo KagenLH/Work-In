@@ -21,4 +21,15 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
     }
 }));
 
+router.get('/', asyncHandler( async (req, res, next) => {
+    try {
+        const listings = await Listing.findAll({
+            include: [Image, User]
+        });
+        res.json(listings);
+    } catch (err) {
+        next(err);
+    }
+}));
+
 module.exports = router;
