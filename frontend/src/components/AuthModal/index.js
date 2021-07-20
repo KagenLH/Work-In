@@ -61,7 +61,7 @@ export default function Modal ({show, authType}) {
                         <button
                             className="auth-modal__options-button"
                             onClick={() => {
-                                const user = dispatch(loginUser({credential: "Demo Manager", password: "password" }));
+                                const user = dispatch(loginUser({credential: "Demo Host", password: "password" }));
                                 if(user) {
                                     if(authType === 'login') dispatch(closeLoginModal());
                                     if(authType === 'signup') dispatch(closeSignupModal());

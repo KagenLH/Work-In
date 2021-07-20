@@ -45,7 +45,6 @@ export default function ListingSearch() {
                             </div>
                         </div>
                     </NavLink>
-                    
                 ))}
             </div>
         </div>
