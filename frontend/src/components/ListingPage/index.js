@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 
 import { csrfFetch } from '../../store/csrf';
 
@@ -24,6 +24,7 @@ export default function ListingPage() {
             if(res.ok) {
                 const listing = await res.json();
 
+                setImages(listing.Images);
                 setName(listing.name);
                 setAddress(listing.address);
                 setCity(listing.city);
@@ -31,14 +32,13 @@ export default function ListingPage() {
                 setCountry(listing.country);
                 setDescription(listing.description);
                 setPrice(listing.price);
-                setImages(listing.Images);
 
-                console.log(images);
                 console.log(listing);
             }
         })();
     }, [listingId]);
 
+    console.log(images);
 
     return (
         <div
@@ -67,23 +67,47 @@ export default function ListingPage() {
                     <div 
                         className="listing-page__images-images"
                     >
-                        {images.map(image => (
-                            <img src={image.url} key={image.id}/>
-                        ))}
+                        {/* {images.map(image => (
+                            <img src={image.url} key={image.id}/> // <-- Works just fine
+                        ))} */}
                         <div 
                             className="listing-page__cover-image-container"
                         >
-                            <a
-                                className="listing-page__cover-image"
-                                href="/"
-                                // style={{backgroundImage: images[0].url}}
-                            />
+                            <NavLink
+                                className="listing-page__cover-image-link"
+                                to="#"
+                            >
+                                <img src={images[0]?.url} className="listing-page__cover-image"/>
+                            </NavLink>
+                        </div>
+                        <div 
+                            className="listing-page__secondary-container-1"
+                        >
+                            {(images[1] && images[2]) && images.slice(1, 3).map(image => (
+                                <NavLink 
+                                    className="listing-page__secondary-image-link"
+                                    to="#"
+                                >
+                                    <img src={image.url} className="listing-page__secondary-image"/>
+                                </NavLink>
+                            ))}
+                        </div>
+                        <div 
+                            className="listing-page__secondary-container-2"
+                        >
+                            {(images[3] && images[4]) && images.slice(3, 5).map(image => (
+                                <NavLink 
+                                    className="listing-page__secondary-image-link"
+                                    to="#"
+                                >
+                                    <img src={image.url} className="listing-page__secondary-image"/>
+                                </NavLink>
+                            ))}
                         </div>
                     </div>
                     <div 
                         className="listing-page__images-showall"
                     >
-
                     </div>
                 </div>
             </div>

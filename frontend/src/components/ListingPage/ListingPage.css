@@ -20,3 +20,30 @@
     width: 500px;
     height: 300px;
 }
+
+.listing-page__cover-image {
+    position: relative;
+    display: block;
+    border-radius: 15px;
+    width: 500px;
+    height: 500px;
+}
+
+.listing-page__images-block {
+    position: relative;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.listing-page__images-images {
+    position: relative;
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+}
+
+.listing-page__cover-image-container {
+    position: relative;
+    width: 400px;
+}
