@@ -1,6 +1,6 @@
 .listing-page-container-outer {
-    position: absolute;
-    top: 4%;
+    position: fixed;
+    top: 75px;
     width: 100%;
     height: calc(100vh - 4vh);
     overflow-y: auto;
@@ -25,13 +25,15 @@
     position: relative;
     display: block;
     border-radius: 15px;
-    width: 500px;
-    height: 500px;
+    width: 495px;
+    height: 495px;
+    margin: 5px;
+    margin-left: 0;
 }
 
 .listing-page__images-block {
     position: relative;
-    margin-top: 25px;
+    margin-top: 15px;
     width: 100%;
 }
 
@@ -41,9 +43,59 @@
     grid-template-rows: 2fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     width: 100%;
+    height: 500px;
 }
 
 .listing-page__cover-image-container {
-    position: relative;
-    width: 400px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+}
+
+.listing-page__secondary-container-1 {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+}
+
+.listing-page__secondary-container-2 {
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+}
+
+.listing-page__secondary-image {
+    margin: 5px;
+    border-radius: 15px;
+    width: 240px;
+    height: 240px;
+}
+
+.listing-page__hosting-info {
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 30px;
+    margin-left: 5px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 25px;
+}
+
+.listing-page__description {
+    color:rgba(0, 0, 0, 0.8);
+    width: 700px;
+    padding: 25px;
+}
+
+.listing-page__title {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.listing-page__title-address {
+    color:rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
+}
+
+.listing-page__full-address {
+    font-weight: normal;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
 }

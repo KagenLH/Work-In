@@ -3,8 +3,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 4%;
+    height: 35px;
     width: 100%;
+    z-index: 99;
 }
 
 .nav-link {
@@ -76,4 +77,18 @@
     border: none;
     color: salmon;
     cursor: pointer;
+}
+
+.nav-bar-logo {
+    height: 100%;
+    width: 110px;
+    overflow: clip;
+}
+
+.nav-bar-logo-image {
+    position: relative;
+    right: 20px;
+    bottom: 39px;
+    height: 150px;
+    width: 150px;
 }

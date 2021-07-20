@@ -1,0 +1,18 @@
+.navbar__search {
+    position: relative;
+    left: 20px;
+    display: flex;
+}
+
+.navbar__search-input {
+    padding: 10px;
+    border-radius: 50px;
+    width: 300px;
+    border: 1px solid lightgray;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar__search-input:focus {
+    outline: none;
+    border: 1px solid salmon;
+}

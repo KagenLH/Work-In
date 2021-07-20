@@ -6,6 +6,8 @@ import LoginForm from './AuthForms/LoginForm';
 import './Modal.css'
 import SignupFormPage from './AuthForms/SignupForm';
 
+import logo from '../../assets/images/work-in-logo.png';
+
 export default function Modal ({show, authType}) {
     const dispatch = useDispatch();
 
@@ -26,6 +28,7 @@ export default function Modal ({show, authType}) {
                     </h2>
                 </div>
                 <div className="auth-modal__body">
+                    <img src={logo} className="auth-modal__logo"/>
                     {authType === 'login' ? 
                     <LoginForm/>
                     :

@@ -71,3 +71,12 @@
     color: salmon;
     cursor: pointer;
 }
+
+.auth-modal__logo {
+    position: relative;
+    left: 125px;
+    margin-top: -50px;
+    margin-bottom: -40px;
+    height: 200px;
+    width: 200px;
+}

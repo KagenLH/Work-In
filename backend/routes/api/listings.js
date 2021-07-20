@@ -4,7 +4,7 @@ const { check }  = require("express-validator");
 
 const { handleValidationErrors } = require("../../utils/validation");
 
-const { Listing, Image } = require("../../db/models");
+const { Listing, Image, User } = require("../../db/models");
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 
     try {
         const listing = await Listing.findByPk(id, {
-            include: Image 
+            include: [Image, User]
         });
         res.json(listing);
     } catch (err) {

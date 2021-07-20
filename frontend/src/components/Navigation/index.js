@@ -4,9 +4,10 @@ import { useLocation } from 'react-router';
 
 import ProfileButton from './ProfileButton';
 import { showLoginModal, showSignupModal} from '../../store/modals';
+import SearchBar from '../SearchBar';
 
 import './Navigation.css';
-
+import logo from '../../assets/images/work-in-logo.png';
 
 export default function Navigation() {
     const currentUrl = useLocation();
@@ -14,7 +15,15 @@ export default function Navigation() {
     const sessionUser = useSelector(state => state.session.user);
  
     return (
-        <div className="nav-bar" style={currentUrl.pathname.includes("/listings/") ? {width: '1000px', left: '51%', transform: 'translateX(-50%)'} : {width: '100%'} }>
+        <div className="nav-bar" style={currentUrl.pathname.includes("/listings/") ? {width: '1000px', left: '51%', transform: 'translateX(-50%)', height: '70px', justifyContent: 'space-between'} : {width: '100%'} }>
+            {currentUrl.pathname.includes("listings") && 
+            <>
+                <NavLink exact to="/" className="nav-bar-logo">
+                    <img src={logo} className="nav-bar-logo-image"/>
+                </NavLink>
+                <SearchBar context="nav"/>
+            </>
+            }
             <ul className="nav-links">
                 <NavLink exact to="/" className="nav-link" activeClassName="nav-link-active">Home</NavLink>
                 {sessionUser !== null ? 

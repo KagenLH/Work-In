@@ -14,6 +14,7 @@ export default function ListingPage() {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(20);
     const [images, setImages] = useState([]);
+    const [host, setHost] = useState('');
 
     const listingId = useParams().id;
 
@@ -32,6 +33,7 @@ export default function ListingPage() {
                 setCountry(listing.country);
                 setDescription(listing.description);
                 setPrice(listing.price);
+                setHost(listing.User.username);
 
                 console.log(listing);
             }
@@ -108,7 +110,21 @@ export default function ListingPage() {
                     <div 
                         className="listing-page__images-showall"
                     >
+                        {/* TODO: Add code for a showall button that will go to the image viewer */}
                     </div>
+                </div>
+                <div
+                    className="listing-page__hosting-info"
+                >
+                    {`Workspace hosted by ${host}`}
+                    <div className="listing-page__full-address">
+                        {address}, {city}, {state}, {country}
+                    </div>
+                </div>
+                <div 
+                    className="listing-page__description"
+                >
+                    {description}
                 </div>
             </div>
         </div>
