@@ -1,0 +1,50 @@
+.listing-search__container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 75px;
+    padding: 40px;
+    padding-left: 55px;
+    border-top: 1px solid rgba(211, 211, 211, 0.205);
+    box-shadow: inset 0px 0px 60px rgba(0, 0, 0, 0.07);
+}
+
+.listing-search__listings-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listing-search__listing-box {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.listing-search__listing-image-wrapper {
+    position: relative;
+}
+
+.listing-search__listing-image-link {
+    text-decoration: none;
+    color: black;
+}
+
+.listing-search__listing-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+}
+
+.listing-search__listing-name-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.listing-search__listing-name {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.listing-search__listing-general-location {
+    color: rgba(0, 0, 0, 0.6);
+}

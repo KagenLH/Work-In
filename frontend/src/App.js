@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import Modal from "./components/AuthModal";
 import ListingPage from "./components/ListingPage";
+import ListingSearch from "./components/ListingSearch";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path="/listings/:id">
           <ListingPage/>
+        </Route>
+        <Route path="/listings">
+          <ListingSearch/>
         </Route>
       </Switch>
     </>

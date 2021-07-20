@@ -15,7 +15,7 @@ export default function Navigation() {
     const sessionUser = useSelector(state => state.session.user);
  
     return (
-        <div className="nav-bar" style={currentUrl.pathname.includes("/listings/") ? {width: '1000px', left: '51%', transform: 'translateX(-50%)', height: '70px', justifyContent: 'space-between'} : {width: '100%'} }>
+        <div className="nav-bar" style={currentUrl.pathname.includes("/listings") ? {width: '1000px', left: '51%', transform: 'translateX(-50%)', height: '70px', justifyContent: 'space-between'} : {width: '100%'} }>
             {currentUrl.pathname.includes("listings") && 
             <>
                 <NavLink exact to="/" className="nav-bar-logo">
@@ -26,6 +26,7 @@ export default function Navigation() {
             }
             <ul className="nav-links">
                 <NavLink exact to="/" className="nav-link" activeClassName="nav-link-active">Home</NavLink>
+                <NavLink exact to="/listings" className="nav-link" activeClassName="nav-link-active">Listings</NavLink>
                 {sessionUser !== null ? 
                 <ProfileButton className="logout-button" user={sessionUser}/>
                 :

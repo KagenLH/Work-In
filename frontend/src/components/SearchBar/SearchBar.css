@@ -10,9 +10,17 @@
     width: 300px;
     border: 1px solid lightgray;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    transition: ease 0.2s;
 }
 
 .navbar__search-input:focus {
     outline: none;
     border: 1px solid salmon;
+    /* width: 400px;
+    height: 65px; */
 }
+
+/* .navbar__search-input:focus ~ .homepage__search-submit,
+.navbar__search-input:not(:focus):valid ~ .homepage__search-submit {
+    transform: translateY(-20px);
+} */
