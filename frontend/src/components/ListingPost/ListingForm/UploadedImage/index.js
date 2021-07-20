@@ -5,7 +5,6 @@ export default function UploadedImage({ image }) {
     useEffect(() => {
 
     }, []);
-    console.log(image);
     return (
         <span>
             

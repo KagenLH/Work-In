@@ -97,10 +97,10 @@ router.post('/', multipleMulterUpload("images"), restoreUser, validateListing, a
         });
 
         if(newListing) {
-            const imageUrls = await multiplePublicFileUpload(req.images);
-            imageUrls.forEach(async imageUrl => {
-                await Image.create({ listingId: newListing.id, url: imageUrl });
-            });
+            const imageUrls = await multiplePublicFileUpload(req.files);
+            for(let i = 0; i < imageUrls.length; i++) {
+                await Image.create({ listingId: newListing.id, url: imageUrls[i] });
+            }
         }
 
         res.json(newListing);

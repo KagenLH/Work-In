@@ -48,9 +48,10 @@ export default function ListingForm({ context }) {
             });
 
             if(res.ok) {
-                const listing = res.json();
+                const listing = await res.json();
                 console.log(listing);
             }
+
         } catch(err) {
             console.log("Something went wrong.");
             setValidationErrors(err.errors);
