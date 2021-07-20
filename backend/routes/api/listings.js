@@ -3,6 +3,8 @@ const asyncHandler = require("express-async-handler");
 const { check }  = require("express-validator");
 
 const { handleValidationErrors } = require("../../utils/validation");
+const { restoreUser } = require("../../utils/auth");
+const { multipleMulterUpload, multiplePublicFileUpload } = require("../../awsS3");
 
 const { Listing, Image, User } = require("../../db/models");
 
@@ -76,9 +78,11 @@ router.get('/', asyncHandler( async (req, res, next) => {
     }
 }));
 
-router.post('/', validateListing, asyncHandler( async (req, res, next) => {
+router.post('/', multipleMulterUpload("images"), restoreUser, validateListing, asyncHandler( async (req, res, next) => {
     const { name, address, city, state, country, price, description } = req.body;
     const userId = req.user.id;
+
+    console.log(req.body);
 
     try {
         const newListing = await Listing.create({
@@ -91,6 +95,13 @@ router.post('/', validateListing, asyncHandler( async (req, res, next) => {
             price,
             description
         });
+
+        if(newListing) {
+            const imageUrls = await multiplePublicFileUpload(req.images);
+            imageUrls.forEach(async imageUrl => {
+                await Image.create({ listingId: newListing.id, url: imageUrl });
+            });
+        }
 
         res.json(newListing);
     } catch(err) {

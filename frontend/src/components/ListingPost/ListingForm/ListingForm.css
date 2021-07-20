@@ -5,7 +5,7 @@
 
 .listing-form__input-text {
     position: relative;
-    width: 700px;
+    width: 850px;
     height: 60px;
     border-radius: 25px;
     border: 1px solid rgba(0, 0, 0, 0.4);
@@ -16,6 +16,8 @@
 
 .listing-form__input-wrapper {
     position: relative;
+    display: flex;
+    flex-direction: column;
     margin: 20px;
 }
 
@@ -41,4 +43,32 @@
     left: 16px;
     top: 23px;
     transition: 0.2s ease all;
+}
+
+.listing-form__description-label {
+    font-weight: normal;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.listing-form__input-textarea {
+    padding: 25px;
+    margin-left: 10px;
+    resize: none;
+    overflow-y: auto;
+    font-size: 20px;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    height: 400px;
+}
+
+.listing-form__input-textarea:focus {
+    outline: none;
+    border: 1px solid salmon;
+}
+
+.listing-form__submit-button {
+    margin-bottom: 50px;
+    margin-left: 150px;
 }
