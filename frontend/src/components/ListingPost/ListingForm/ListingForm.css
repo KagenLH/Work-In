@@ -1,0 +1,44 @@
+.listing-form {
+    position: relative;
+    margin: 25px;
+}
+
+.listing-form__input-text {
+    position: relative;
+    width: 700px;
+    height: 60px;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    padding-top: 30px;
+    font-size: 16px;
+}
+
+.listing-form__input-wrapper {
+    position: relative;
+    margin: 20px;
+}
+
+.listing-form__input-text:focus {
+    outline: none;
+    border: 1px solid rgba(250, 128, 114, 0.6);
+}
+
+.listing-form__input-text:focus ~ .listing-form__floating-label,
+.listing-form__input-text:not(:focus):valid ~ .listing-form__floating-label {
+    top: 12px;
+    bottom: 10px;
+    left: 20px;
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.listing-form__floating-label {
+    opacity: 0.4;
+    font-size: 16px;
+    position: absolute;
+    pointer-events: none;
+    left: 16px;
+    top: 23px;
+    transition: 0.2s ease all;
+}
