@@ -79,14 +79,14 @@ export default function ListingPage() {
                             ))} */}
                             <div 
                                 className="listing-page__cover-image-container"
+                                onClick={() => {
+                                    dispatch(setCurrentImage(images[0].url));
+                                    dispatch(openImageViewer());
+                                }}
                             >
                                 <NavLink
                                     className="listing-page__cover-image-link"
                                     to="#"
-                                    onClick={() => {
-                                        dispatch(setCurrentImage(images[0].url));
-                                        dispatch(openImageViewer());
-                                    }}
                                 >
                                     <img src={images[0]?.url} className="listing-page__cover-image"/>
                                 </NavLink>
@@ -103,7 +103,9 @@ export default function ListingPage() {
                                             dispatch(openImageViewer());
                                         }}
                                     >
-                                        <img src={image.url} className="listing-page__secondary-image"/>
+                                        <div className="listing-page__secondary-image-overlay">
+                                            <img src={image.url} className="listing-page__secondary-image"/>
+                                        </div>
                                     </NavLink>
                                 ))}
                             </div>
@@ -119,7 +121,9 @@ export default function ListingPage() {
                                             dispatch(openImageViewer());
                                         }}
                                     >
-                                        <img src={image.url} className="listing-page__secondary-image"/>
+                                        <div className="listing-page__secondary-image-overlay">
+                                            <img src={image.url} className="listing-page__secondary-image"/>
+                                        </div>
                                     </NavLink>
                                 ))}
                             </div>
