@@ -1,0 +1,9 @@
+.form-errors {
+    list-style: none;
+    margin-left: 15px;
+}
+
+.form-error {
+    font-size: 14px;
+    color: red;
+}

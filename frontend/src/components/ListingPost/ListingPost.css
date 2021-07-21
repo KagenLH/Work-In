@@ -6,14 +6,18 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: inset 0px 0px 60px rgba(0, 0, 0, 0.07);
     overflow-y: auto;
+    background-image: url("../../assets/images/orange-office.jpg");
 }
 
 .listing-post__container {
     position: relative;
+    background-color: white;
     width: 1000px;
-    left: 50%;
+    left: 51%;
     transform: translateX(-50%);
     padding: 40px;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 }
 
 .listing-post__header {

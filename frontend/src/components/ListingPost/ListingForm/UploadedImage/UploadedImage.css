@@ -1,0 +1,8 @@
+.listing-create__uploaded-image {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    vertical-align: top;
+    border-radius: 20px;
+    margin: 5px;
+}

@@ -9,6 +9,7 @@ import Modal from "./components/AuthModal";
 import ListingPage from "./components/ListingPage";
 import ListingSearch from "./components/ListingSearch";
 import ListingPost from "./components/ListingPost";
+import ImageViewer from "./components/ListingPage/ImageViewer";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ function App() {
         <Route exact path="/">
           <HomePage/>
         </Route>
-        <Route path="/listings/:id(\\d+)">
+        <Route path="/listings/:id(\d+)">
           <ListingPage/>
         </Route>
         <Route exact path="/listings">

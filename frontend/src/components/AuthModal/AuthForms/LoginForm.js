@@ -3,6 +3,7 @@ import { loginUser } from '../../../store/session';
 import { useDispatch } from 'react-redux';
 
 import './AuthForm.css';
+import FormErrors from '../../FormErrors';
 import { closeLoginModal } from '../../../store/modals';
 
 
@@ -18,12 +19,14 @@ export default function LoginForm() {
         e.preventDefault();
 
         if(credential.length && password.length) {
-            const user = await dispatch(loginUser({credential, password}));
 
-            if(user) {
+            try {
+                const user = await dispatch(loginUser({credential, password}));
                 dispatch(closeLoginModal());
-            } else {
-                
+            } catch (e) {
+                const err = await e.json();
+                const errors = err.errors;
+                setValidationErrors(errors);
             }
         }
     };
@@ -33,6 +36,7 @@ export default function LoginForm() {
                 className="login-form auth-form"
                 onSubmit={handleSubmit}
             >
+                <FormErrors errors={validationErrors} keyword="email"/>
                 <div
                     className="auth-form__label"
                 >
@@ -51,7 +55,7 @@ export default function LoginForm() {
                         Username or Email
                     </span>
                 </div>
-
+                <FormErrors errors={validationErrors} keyword="password"/>
                 <div
                     className="auth-form__label"
                 >

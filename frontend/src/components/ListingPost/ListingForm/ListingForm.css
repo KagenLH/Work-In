@@ -1,6 +1,7 @@
 .listing-form {
     position: relative;
     margin: 25px;
+    margin-bottom: 100px;
 }
 
 .listing-form__input-text {
@@ -48,7 +49,7 @@
 .listing-form__description-label {
     font-weight: normal;
     font-size: 18px;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .listing-form__input-textarea {
@@ -69,6 +70,95 @@
 }
 
 .listing-form__submit-button {
-    margin-bottom: 50px;
-    margin-left: 150px;
+    background-color: salmon;
+    cursor: pointer;
+    border: none;
+    color: white;
+    width: 300px;
+    height: 50px;
+    border-radius: 30px;
 }
+
+.listing-form__uploaded-images {
+    display: flex;
+    margin: 25px;
+    flex-wrap: wrap;
+}
+
+.listing-form__input-images-box {
+    position: relative;
+    margin: 15px;
+    cursor: pointer;
+    background-color: rgba(211, 211, 211, 0.411);
+    width: 500px;
+    height: 150px;
+    box-shadow: inset 5px 5px 14px 30px rgba(0, 0, 0, 0.05);
+}
+
+.listing-form__input-images-drag-message {
+    position: relative;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    color:rgba(100, 148, 237, 0.678)
+}
+
+.listing-form__images-label {
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+.listing-form__uploaded-image-wrapper {
+    position: relative;
+}
+
+.listing-form__uploaded-image-label {
+    display: flex;
+    font-size: 15px;
+    color:rgba(0, 0, 0, 0.7);
+    justify-content: center;
+}
+
+.listing-form__submit-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.listing-form__uploaded-image-overlay {
+    position: relative;
+    width: 175px;
+    height: 175px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.listing-form__uploaded-image-overlay:after {
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    margin: 5px;
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+}
+
+.listing-form__uploaded-image-overlay:hover:after {
+    opacity: 1;
+}
+
+.listing-form__validation-errors {
+    list-style: none;
+    margin-left: 30px;
+}
+
+.listing-form__validation-error {
+    color: red;
+    font-size: 14px;
+}
+

@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 
 import sessionReducer from './session';
 import { loginModalReducer, signupModalReducer } from "./modals";
+import { imageViewerReducer } from "./imageViewer";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     loginModal: loginModalReducer,
     signupModal: signupModalReducer,
+    imageViewer: imageViewerReducer
 });
 
 let enhancer;

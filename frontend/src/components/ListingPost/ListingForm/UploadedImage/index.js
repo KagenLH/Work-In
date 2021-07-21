@@ -6,8 +6,6 @@ export default function UploadedImage({ image }) {
 
     }, []);
     return (
-        <span>
-            
-        </span>
+        <img src={URL.createObjectURL(image)} className="listing-create__uploaded-image"/>
     )
 }

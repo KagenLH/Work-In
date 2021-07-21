@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import UploadedImage from './UploadedImage';
+import FormErrors from '../../FormErrors';
 import { csrfFetch } from '../../../store/csrf';
 import './ListingForm.css';
 
@@ -21,7 +22,11 @@ export default function ListingForm({ context }) {
 
     }, []);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({onDrop});
+    const { getRootProps, getInputProps } = useDropzone({onDrop});
+
+    const removeImage = (e) => {
+        setImages(images.filter(image => image.file.path !== e.target.getAttribute("urlkey")));
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,7 +42,7 @@ export default function ListingForm({ context }) {
 
             if(images && images.length !== 0) {
                 for(let i = 0; i < images.length; i++) {
-                    formData.append("images", images[i]);
+                    formData.append("images", images[i].file);
                 }
             }
 
@@ -54,13 +59,16 @@ export default function ListingForm({ context }) {
 
         } catch(err) {
             console.log("Something went wrong.");
-            setValidationErrors(err.errors);
+            const errors = await err.json();
+            console.log(errors.errors);
+            setValidationErrors(errors.errors);
         }
     }
     return (
         <form
             className="listing-form"
         >
+            <FormErrors errors={validationErrors} keyword="name"/>
             <div className="listing-form__input-wrapper">
                 <input
                     className="listing-form__input-text"
@@ -74,6 +82,7 @@ export default function ListingForm({ context }) {
                     Name your listing
                 </span>
             </div>
+            <FormErrors errors={validationErrors} keyword="address"/>
             <div className="listing-form__input-wrapper">
                 <input
                     className="listing-form__input-text"
@@ -87,6 +96,7 @@ export default function ListingForm({ context }) {
                     What's the street address?
                 </span>
             </div>
+            <FormErrors errors={validationErrors} keyword="city"/>
             <div className="listing-form__input-wrapper">
                 <input
                     className="listing-form__input-text"
@@ -100,6 +110,7 @@ export default function ListingForm({ context }) {
                     Workspace City
                 </span>
             </div>
+            <FormErrors errors={validationErrors} keyword="state"/>
             <div className="listing-form__input-wrapper">
                 <input
                     className="listing-form__input-text"
@@ -113,6 +124,7 @@ export default function ListingForm({ context }) {
                     Workspace State/Province
                 </span>
             </div>
+            <FormErrors errors={validationErrors} keyword="country"/>
             <div className="listing-form__input-wrapper">
                 <input
                     className="listing-form__input-text"
@@ -128,22 +140,30 @@ export default function ListingForm({ context }) {
             </div>
             <div className="listing-form__input-wrapper">
                 <label htmlFor="images" className="listing-form__images-label">
-                    Upload some images of your place.
+                    Upload some images of your place (the first will be the cover image).
                 </label>
-                <div {...getRootProps()}>
+                <div {...getRootProps()} className="listing-form__input-images-box">
                     <input 
                         {...getInputProps()}
                         className="listing-form__input-images"
                         name="images"
                     />
-                    <div>Drag and drop your images here.</div> 
+                    <div className="listing-form__input-images-drag-message">Drag and drop your images here.</div> 
                 </div>
             </div>
             <div className="listing-form__uploaded-images">
-                {images.map(imageWrapper => (
-                    <UploadedImage image={imageWrapper.file}/>
+                {images.map((imageWrapper, i) => (
+                    <div key={i} className="listing-form__uploaded-image-wrapper">
+                        <div urlkey={imageWrapper.file.path} className="listing-form__uploaded-image-overlay"  onClick={removeImage}>
+                            <UploadedImage image={imageWrapper.file}/>
+                        </div>
+                        <div className="listing-form__uploaded-image-label">
+                            {`Image #${i + 1}` + (i === 0 ? ` (Cover Image)` : '')}
+                        </div>
+                    </div>
                 ))}
             </div>
+            <FormErrors errors={validationErrors} keyword="description"/>
             <div className="listing-form__input-wrapper">
                 <label htmlFor="description" className="listing-form__description-label">
                     Describe the details of your listing:
@@ -156,7 +176,9 @@ export default function ListingForm({ context }) {
                         required
                 />
             </div>
-            <button className="listing-form__submit-button" onClick={handleSubmit}>Create Listing</button>
+            <div className="listing-form__submit-button-container">
+                <button className="listing-form__submit-button" onClick={handleSubmit}>Create Listing</button>
+            </div>
         </form>
     );
 }

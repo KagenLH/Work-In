@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { csrfFetch } from '../../store/csrf';
+import { openImageViewer, setCurrentImage } from '../../store/imageViewer';
+import ImageViewer from './ImageViewer';
 
 import './ListingPage.css';
 
@@ -17,6 +20,10 @@ export default function ListingPage() {
     const [host, setHost] = useState('');
 
     const listingId = useParams().id;
+
+    const dispatch = useDispatch();
+
+    const showImageViewer = useSelector(state => state.imageViewer.showViewer);
 
     useEffect(() => {
         (async function() {
@@ -34,99 +41,110 @@ export default function ListingPage() {
                 setDescription(listing.description);
                 setPrice(listing.price);
                 setHost(listing.User.username);
-
-                console.log(listing);
             }
         })();
     }, [listingId]);
 
-    console.log(images);
-
     return (
-        <div
-        className="listing-page-container-outer"
-        >
+        <>
+            <ImageViewer show={showImageViewer} images={images.map(image => image.url)}/>
             <div
-                className="listing-page-container"
+            className="listing-page-container-outer"
             >
                 <div
-                    className="listing-page__title-block"
+                    className="listing-page-container"
                 >
                     <div
-                        className="listing-page__title"
+                        className="listing-page__title-block"
                     >
-                        {name}
-                    </div>
-                    <div 
-                        className="listing-page__title-address"
-                    >
-                        {city}, {state}, {country}
-                    </div>
-                </div>
-                <div
-                    className="listing-page__images-block"
-                >
-                    <div 
-                        className="listing-page__images-images"
-                    >
-                        {/* {images.map(image => (
-                            <img src={image.url} key={image.id}/> // <-- Works just fine
-                        ))} */}
-                        <div 
-                            className="listing-page__cover-image-container"
+                        <div
+                            className="listing-page__title"
                         >
-                            <NavLink
-                                className="listing-page__cover-image-link"
-                                to="#"
+                            {name}
+                        </div>
+                        <div 
+                            className="listing-page__title-address"
+                        >
+                            {city}, {state}, {country}
+                        </div>
+                    </div>
+                    <div
+                        className="listing-page__images-block"
+                    >
+                        <div 
+                            className="listing-page__images-images"
+                        >
+                            {/* {images.map(image => (
+                                <img src={image.url} key={image.id}/> // <-- Works just fine
+                            ))} */}
+                            <div 
+                                className="listing-page__cover-image-container"
                             >
-                                <img src={images[0]?.url} className="listing-page__cover-image"/>
-                            </NavLink>
+                                <NavLink
+                                    className="listing-page__cover-image-link"
+                                    to="#"
+                                    onClick={() => {
+                                        dispatch(setCurrentImage(images[0].url));
+                                        dispatch(openImageViewer());
+                                    }}
+                                >
+                                    <img src={images[0]?.url} className="listing-page__cover-image"/>
+                                </NavLink>
+                            </div>
+                            <div 
+                                className="listing-page__secondary-container-1"
+                            >
+                                {(images[1] && images[2]) && images.slice(1, 3).map(image => (
+                                    <NavLink 
+                                        className="listing-page__secondary-image-link"
+                                        to="#"
+                                        onClick={() => {
+                                            dispatch(setCurrentImage(image.url));
+                                            dispatch(openImageViewer());
+                                        }}
+                                    >
+                                        <img src={image.url} className="listing-page__secondary-image"/>
+                                    </NavLink>
+                                ))}
+                            </div>
+                            <div 
+                                className="listing-page__secondary-container-2"
+                            >
+                                {(images[3] && images[4]) && images.slice(3, 5).map(image => (
+                                    <NavLink 
+                                        className="listing-page__secondary-image-link"
+                                        to="#"
+                                        onClick={() => {
+                                            dispatch(setCurrentImage(image.url));
+                                            dispatch(openImageViewer());
+                                        }}
+                                    >
+                                        <img src={image.url} className="listing-page__secondary-image"/>
+                                    </NavLink>
+                                ))}
+                            </div>
                         </div>
                         <div 
-                            className="listing-page__secondary-container-1"
+                            className="listing-page__images-showall"
                         >
-                            {(images[1] && images[2]) && images.slice(1, 3).map(image => (
-                                <NavLink 
-                                    className="listing-page__secondary-image-link"
-                                    to="#"
-                                >
-                                    <img src={image.url} className="listing-page__secondary-image"/>
-                                </NavLink>
-                            ))}
+                            {/* TODO: Add code for a showall button that will go to the image viewer */}
                         </div>
-                        <div 
-                            className="listing-page__secondary-container-2"
-                        >
-                            {(images[3] && images[4]) && images.slice(3, 5).map(image => (
-                                <NavLink 
-                                    className="listing-page__secondary-image-link"
-                                    to="#"
-                                >
-                                    <img src={image.url} className="listing-page__secondary-image"/>
-                                </NavLink>
-                            ))}
+                    </div>
+                    <div
+                        className="listing-page__hosting-info"
+                    >
+                        {`Workspace hosted by ${host}`}
+                        <div className="listing-page__full-address">
+                            {address}, {city}, {state}, {country}
                         </div>
                     </div>
                     <div 
-                        className="listing-page__images-showall"
+                        className="listing-page__description"
                     >
-                        {/* TODO: Add code for a showall button that will go to the image viewer */}
+                        {description}
                     </div>
-                </div>
-                <div
-                    className="listing-page__hosting-info"
-                >
-                    {`Workspace hosted by ${host}`}
-                    <div className="listing-page__full-address">
-                        {address}, {city}, {state}, {country}
-                    </div>
-                </div>
-                <div 
-                    className="listing-page__description"
-                >
-                    {description}
                 </div>
             </div>
-        </div>
+        </>
     );
 }

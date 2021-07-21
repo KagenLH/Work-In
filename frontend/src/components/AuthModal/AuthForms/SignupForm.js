@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import { signUp } from "../../../store/session";
+import { closeSignupModal } from "../../../store/modals";
+import FormErrors from "../../FormErrors";
 
 export default function SignupForm() {
     const [username, setUsername] = useState('');
@@ -28,11 +30,16 @@ export default function SignupForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(password === confirmPassword) {
-            const user = await dispatch(signUp({username, email, password}));
-            if(user) {
+            try {
+                const user = await dispatch(signUp({username, email, password}));
+                dispatch(closeSignupModal());
                 return (
-                    <Redirect to="/"/>
+                    <Redirect to="/listings"/>
                 )
+            } catch(e) {
+                const err = await e.json();
+                const errors = err.errors;
+                setValidationErrors(errors);
             }
         } else {
             return setValidationErrors(['Confirm password field must match the Password field.']);
@@ -44,6 +51,7 @@ export default function SignupForm() {
                 className="signup-form auth-form"
                 onSubmit={handleSubmit}
             >
+                <FormErrors className="auth-form-errors" errors={validationErrors} keyword="username"/>
                 <div
                     className="auth-form__label"
                 >
@@ -62,6 +70,7 @@ export default function SignupForm() {
                         Username
                     </span>
                 </div>
+                <FormErrors errors={validationErrors} keyword="email"/>
                 <div
                     className="auth-form__label"
                 > 
@@ -80,6 +89,7 @@ export default function SignupForm() {
                         E-mail address
                     </span>
                 </div>
+                <FormErrors errors={validationErrors} keyword="password"/>
                 <div
                     className="auth-form__label"
                 >
@@ -98,6 +108,7 @@ export default function SignupForm() {
                         Password
                     </span>
                 </div>
+                <FormErrors errors={validationErrors} keyword="confirm"/>
                 <div
                     className="auth-form__label"
                 >

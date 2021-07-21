@@ -23,6 +23,12 @@ export default function ListingSearch() {
         <div
             className="listing-search__container"
         >
+            <div className="listing-search__top-bar">
+                <div className="listing-search__create-listing">
+                    <span className="listing-search__create-listing-button-label">Have a Workspace of your own?</span>
+                    <NavLink to="/listings/create" className="listing-search__create-listing-button">Host a Listing</NavLink>
+                </div>
+            </div>
             <div className="listing-search__listings-container">
                 {listings.map(listing => (
                     <NavLink to={`/listings/${listing.id}`} className="listing-search__listing-image-link">
