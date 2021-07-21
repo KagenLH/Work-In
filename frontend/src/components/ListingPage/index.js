@@ -91,47 +91,73 @@ export default function ListingPage() {
                                     <img src={images[0]?.url} className="listing-page__cover-image"/>
                                 </NavLink>
                             </div>
+                            {images.length > 4 ? 
+                            (<>
+                                <div 
+                                    className="listing-page__secondary-container-1"
+                                >
+                                    {(images[1] && images[2]) && images.slice(1, 3).map(image => (
+                                        <NavLink 
+                                            className="listing-page__secondary-image-link"
+                                            to="#"
+                                            onClick={() => {
+                                                dispatch(setCurrentImage(image.url));
+                                                dispatch(openImageViewer());
+                                            }}
+                                        >
+                                            <div className="listing-page__secondary-image-overlay">
+                                                <img src={image.url} className="listing-page__secondary-image"/>
+                                            </div>
+                                        </NavLink>
+                                    ))}
+                                </div>
+                                <div 
+                                    className="listing-page__secondary-container-2"
+                                >
+                                    {(images[3] && images[4]) && images.slice(3, 5).map(image => (
+                                        <NavLink 
+                                            className="listing-page__secondary-image-link"
+                                            to="#"
+                                            onClick={() => {
+                                                dispatch(setCurrentImage(image.url));
+                                                dispatch(openImageViewer());
+                                            }}
+                                        >
+                                            <div className="listing-page__secondary-image-overlay">
+                                                <img src={image.url} className="listing-page__secondary-image"/>
+                                            </div>
+                                        </NavLink>
+                                    ))}
+                                </div>
+                            </>) : 
+                            <>
                             <div 
-                                className="listing-page__secondary-container-1"
+                                className="listing-page__secondary-full-container"
+                                onClick={() => {
+                                    dispatch(setCurrentImage(images[1].url));
+                                    dispatch(openImageViewer());
+                                }}
                             >
-                                {(images[1] && images[2]) && images.slice(1, 3).map(image => (
-                                    <NavLink 
-                                        className="listing-page__secondary-image-link"
-                                        to="#"
-                                        onClick={() => {
-                                            dispatch(setCurrentImage(image.url));
-                                            dispatch(openImageViewer());
-                                        }}
-                                    >
-                                        <div className="listing-page__secondary-image-overlay">
-                                            <img src={image.url} className="listing-page__secondary-image"/>
-                                        </div>
-                                    </NavLink>
-                                ))}
+                                <NavLink
+                                    className="listing-page__cover-image-link"
+                                    to="#"
+                                >
+                                    <img src={images[1]?.url} className="listing-page__cover-image"/>
+                                </NavLink>
                             </div>
-                            <div 
-                                className="listing-page__secondary-container-2"
-                            >
-                                {(images[3] && images[4]) && images.slice(3, 5).map(image => (
-                                    <NavLink 
-                                        className="listing-page__secondary-image-link"
-                                        to="#"
-                                        onClick={() => {
-                                            dispatch(setCurrentImage(image.url));
-                                            dispatch(openImageViewer());
-                                        }}
-                                    >
-                                        <div className="listing-page__secondary-image-overlay">
-                                            <img src={image.url} className="listing-page__secondary-image"/>
-                                        </div>
-                                    </NavLink>
-                                ))}
-                            </div>
-                        </div>
-                        <div 
+                            </>}
+                        <button 
                             className="listing-page__images-showall"
+                            onClick={() => {
+                                dispatch(setCurrentImage(images[0].url));
+                                dispatch(openImageViewer());
+                            }}
                         >
-                            {/* TODO: Add code for a showall button that will go to the image viewer */}
+                            <i className="fas fa-th"></i>
+                            <div className="listing-page__images-showall-text">
+                                Show all photos
+                            </div>
+                        </button>
                         </div>
                     </div>
                     <div
@@ -147,6 +173,20 @@ export default function ListingPage() {
                     >
                         {description}
                     </div>
+                    {<div className="listing-page__crud-links">
+                        Need to update something about this listing?
+                        <div className="listing-page__links-container">
+                            <NavLink to={`/listings/${listingId}/edit`} className="listing-page__crud-link">
+                                Edit listing
+                            </NavLink>
+                            <span className="listing-page__crud-or">or</span>
+                            <button
+                                className="listing-page__crud-button"
+                            >
+                                    Delete listing
+                            </button>
+                        </div>
+                    </div>}
                 </div>
             </div>
         </>
