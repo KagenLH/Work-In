@@ -220,7 +220,7 @@
     justify-content: center;
 }
 
-.listing-page__crud-link {
+.listing-page__crud-link { 
     font-weight: bold;
     text-decoration: none;
     color: cornflowerblue;

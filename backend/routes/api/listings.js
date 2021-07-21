@@ -109,4 +109,18 @@ router.post('/', multipleMulterUpload("images"), restoreUser, validateListing, a
     }
 }));
 
+router.delete("/:id", restoreUser, asyncHandler(async (req, res, next) => {
+    const { id } = req.params
+
+    const listing = await Listing.findByPk(id);
+    console.log(id);
+    if(listing.userId === req.user.id) {
+        await listing.destroy();
+        res.json({ message: "Sucessfully deleted listing."});
+    } else {
+        const err = new Error("Cannot destroy a listing you do not own.");
+        next(err);
+    }
+}));
+
 module.exports = router;

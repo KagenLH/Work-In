@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { csrfFetch } from '../../store/csrf';
 import { openImageViewer, setCurrentImage } from '../../store/imageViewer';
+import { showDeleteModal } from '../../store/modals';
 import ImageViewer from './ImageViewer';
+import DeleteListing from './DeleteListing';
 
 import './ListingPage.css';
 
@@ -18,6 +20,8 @@ export default function ListingPage() {
     const [price, setPrice] = useState(20);
     const [images, setImages] = useState([]);
     const [host, setHost] = useState('');
+
+    const showDeleteListingModal = useSelector(state => state.deleteListingModal.showModal);
 
     const listingId = useParams().id;
 
@@ -47,6 +51,11 @@ export default function ListingPage() {
 
     return (
         <>
+            <DeleteListing
+                show={showDeleteListingModal}
+                coverImageUrl={images[0]?.url}
+                name={name} price={price}
+                listingId={listingId}/>
             <ImageViewer show={showImageViewer} images={images.map(image => image.url)}/>
             <div
             className="listing-page-container-outer"
@@ -182,6 +191,7 @@ export default function ListingPage() {
                             <span className="listing-page__crud-or">or</span>
                             <button
                                 className="listing-page__crud-button"
+                                onClick={() => dispatch(showDeleteModal())}
                             >
                                     Delete listing
                             </button>

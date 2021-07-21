@@ -2,14 +2,15 @@ import { combineReducers, applyMiddleware, compose, createStore } from "redux";
 import thunk from 'redux-thunk';
 
 import sessionReducer from './session';
-import { loginModalReducer, signupModalReducer } from "./modals";
+import { loginModalReducer, signupModalReducer, deleteListingModalReducer } from "./modals";
 import { imageViewerReducer } from "./imageViewer";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     loginModal: loginModalReducer,
     signupModal: signupModalReducer,
-    imageViewer: imageViewerReducer
+    imageViewer: imageViewerReducer,
+    deleteListingModal: deleteListingModalReducer,
 });
 
 let enhancer;

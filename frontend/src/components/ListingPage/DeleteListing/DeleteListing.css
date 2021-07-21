@@ -1,0 +1,108 @@
+.delete-listing__container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.delete-listing__content {
+    z-index: 99;
+    position: relative;
+    background-color: white;
+    width: 500px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+}
+
+.delete-listing__button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: salmon;
+    border: none;
+    color: white;
+    font-weight: bold;
+    width: 200px;
+    height: 60px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.delete-listing__button:hover {
+    background-color: rgb(248, 120, 106)
+}
+
+.delete-listing__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.delete-listing__header-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 85px;
+}
+
+.delete-listing__close {
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.8);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-listing__close:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.delete-listing__body-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.delete-listing__body {
+    position: relative;
+}
+
+.delete-listing__body-info {
+    position: relative;
+    margin-top: 20px;
+    left: 50%;
+    transform: translateX(-30%);
+}
+
+.delete-listing__body-name {
+    display: flex;
+    justify-content: center;
+    margin-right: 200px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.delete-listing__body-price {
+    margin-top: 5px;
+    color:rgba(0, 0, 0, 0.7);
+}
+
+.delete-listing__confirmation-container {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-listing__confirmation {
+    font-weight: bold;
+    margin-left: 25px;
+    margin-top: 20px;
+    width: 300px;
+}
