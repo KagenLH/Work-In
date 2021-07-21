@@ -1,4 +1,4 @@
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { closeDeleteModal } from '../../../store/modals';
@@ -7,6 +7,7 @@ import './DeleteListing.css';
 
 export default function DeleteListing({ show, coverImageUrl, name, price, listingId }) {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const deleteListing = async () => {
         const res = await csrfFetch(`/api/listings/${listingId}`, {
@@ -14,9 +15,8 @@ export default function DeleteListing({ show, coverImageUrl, name, price, listin
         });
 
         if(res.ok) {
-            return (
-                <Redirect to="/listings"/>
-            );
+            dispatch(closeDeleteModal());
+            history.push("/listings")
         }
     }
 

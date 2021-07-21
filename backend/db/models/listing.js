@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Listing.associate = function(models) {
     // associations can be defined here
-    Listing.hasMany(models.Image, { foreignKey: 'listingId', onDelete: 'CASCADE'});
+    Listing.hasMany(models.Image, { foreignKey: 'listingId', onDelete: 'CASCADE', hooks: true});
     Listing.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return Listing;
