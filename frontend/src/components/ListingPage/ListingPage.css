@@ -80,17 +80,20 @@
 }
 
 .listing-page__hosting-info {
+    position: relative;
     font-weight: bold;
     font-size: 22px;
     margin-top: 30px;
     margin-left: 5px;
     border-bottom: 1px solid lightgray;
     padding-bottom: 25px;
+    height: 80px;
+    width: 625px;
 }
 
 .listing-page__description {
     color:rgba(0, 0, 0, 0.8);
-    width: 700px;
+    width: 650px;
     padding: 25px;
 }
 
@@ -246,4 +249,9 @@
 .listing-page__crud-or {
     font-weight: bold;
     margin-left: 25px;
+}
+
+.listing-page__hosting-booking {
+    display: flex;
+    justify-content: space-between;
 }

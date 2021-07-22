@@ -7,6 +7,7 @@ import { openImageViewer, setCurrentImage } from '../../store/imageViewer';
 import { showDeleteModal } from '../../store/modals';
 import ImageViewer from './ImageViewer';
 import DeleteListing from './DeleteListing';
+import BookingBox from './BookingBox';
 
 import './ListingPage.css';
 
@@ -173,13 +174,16 @@ export default function ListingPage() {
                         </button>
                         </div>
                     </div>
-                    <div
-                        className="listing-page__hosting-info"
-                    >
-                        {`Workspace hosted by ${host}`}
-                        <div className="listing-page__full-address">
-                            {address}, {city}, {state}, {country}
+                    <div className="listing-page__hosting-booking">
+                        <div
+                            className="listing-page__hosting-info"
+                        >
+                            {`Workspace hosted by ${host}`}
+                            <div className="listing-page__full-address">
+                                {address}, {city}, {state}, {country}
+                            </div>
                         </div>
+                        <BookingBox price={price}/>
                     </div>
                     <div 
                         className="listing-page__description"
