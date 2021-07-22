@@ -27,6 +27,8 @@
 }
 
 .listing-search__listing-image-link {
+    position: relative;
+    z-index: 1;
     text-decoration: none;
     color: black;
 }
@@ -67,7 +69,7 @@
     top: 0;
     left: 0;
     border-radius: 15px;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: all 0.25s;
     -webkit-transition: all 0.25s;
@@ -97,4 +99,17 @@
     font-weight: bold;
     color: cornflowerblue;
     font-size: 13px;
+}
+
+.listing-search__heart-container {
+    position: absolute;
+    color: white;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    z-index: -1;
+}
+
+.listing-search__listing-image-wrapper:hover > .listing-search__heart-container {
+    z-index: 1
 }

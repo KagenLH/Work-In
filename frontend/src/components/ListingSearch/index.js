@@ -34,6 +34,9 @@ export default function ListingSearch() {
                     <NavLink key={listing.id} to={`/listings/${listing.id}`} className="listing-search__listing-image-link">
                         <div key={listing.id} className="listing-search__listing-box">
                             <div className="listing-search__listing-image-wrapper">
+                                <div className="listing-search__heart-container">
+                                    <i className="far fa-heart"></i>
+                                </div>
                                 <img src={listing.Images[0].url} className="listing-search__listing-image"/>
                             </div>
                             <div className="listing-search__listing-info">

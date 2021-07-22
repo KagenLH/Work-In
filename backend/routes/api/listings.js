@@ -109,6 +109,37 @@ router.post('/', multipleMulterUpload("images"), restoreUser, validateListing, a
     }
 }));
 
+router.put("/:id", multipleMulterUpload("images"), restoreUser, validateListing, asyncHandler(async (req, res, next) => {
+    const { name, address, city, state, country, description, price } = req.body;
+    const userId = req.user.id;
+
+    const { id } = req.params;
+
+    try {
+        const listing = await Listing.findByPk(id);
+        if(listing.userId === userId) {
+            const newListing = await Listing.update({
+                name,
+                address,
+                city,
+                state,
+                country,
+                description,
+                price,
+            }, { where: { id }});
+            
+            const imageUrls = await multiplePublicFileUpload(req.files);
+            for(let i = 0; i < imageUrls.length; i++) {
+                await Image.create({ listingId: listing.id, url: imageUrls[i] });
+            }
+
+            res.json({ message: "Listing updated successfully." });
+        }
+    } catch (err) {
+        next(err);
+    }
+}));
+
 router.delete("/:id", restoreUser, asyncHandler(async (req, res, next) => {
     const { id } = req.params
 

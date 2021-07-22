@@ -145,7 +145,7 @@
     left: 0;
     border-radius: 20px;
     margin: 5px;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.7);
     opacity: 0;
     transition: all 0.1s;
     -webkit-transition: all 0.1s;
@@ -170,4 +170,17 @@
     margin-left: 40px;
     margin-bottom: -20px;
     font-weight: bold;
+}
+
+.listing-form__uploaded-image-trash {
+    position: absolute;
+    color: white;
+    font-size: 34px;
+    left: 55%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.listing-form__uploaded-image-overlay:hover > .listing-form__uploaded-image-trash {
+    z-index: 99;
 }

@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 
 import UploadedImage from './UploadedImage';
 import FormErrors from '../../FormErrors';
@@ -18,7 +18,9 @@ export default function ListingForm({ context }) {
     const [newImages, setNewImages] = useState([]);
     const [validationErrors, setValidationErrors] = useState([]);
 
-    const listingId = useParams().id
+    const listingId = useParams().id;
+
+    const history = useHistory();
     
     const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
         const mappedAcc = acceptedFiles.map(file => ({file, errors: []}));
@@ -39,7 +41,22 @@ export default function ListingForm({ context }) {
         }
     }
 
-    const removeOldImage = () => {
+    const removeOldImage = async (e) => {
+        try {
+            const res = await csrfFetch(`/api/images/${e.target.getAttribute("urlkey")}`, {
+                method: 'DELETE',
+            });
+            if(res.ok) {
+                const msg = await res.json();
+                const imageRes = await csrfFetch(`/api/listings/${listingId}`);
+                if(imageRes.ok) {
+                    const listing = await imageRes.json();
+                    setImages(listing.Images);
+                }
+            }
+        } catch(e) {
+            console.log(e);
+        }
 
     };
 
@@ -55,21 +72,28 @@ export default function ListingForm({ context }) {
             formData.append("price", 20.00);
             formData.append("description", description);
 
-            if(images && images.length !== 0) {
-                for(let i = 0; i < images.length; i++) {
-                    formData.append("images", images[i].file);
+            if(context === "edit") {
+                if(newImages && newImages.length !== 0) {
+                    for(let i = 0; i < newImages.length; i++) {
+                        formData.append("images", newImages[i].file);
+                    }
+                }
+            } else {
+                if(images && images.length !== 0) {
+                    for(let i = 0; i < images.length; i++) {
+                        formData.append("images", images[i].file);
+                    }
                 }
             }
 
-            const res = await csrfFetch('/api/listings', {
-                method: 'POST',
+            const res = await csrfFetch(context === "edit" ? `/api/listings/${listingId}` : '/api/listings', {
+                method: context === "edit" ? "PUT" : "POST",
                 headers: { 'Content-Type': 'multipart/form-data'},
                 body: formData
             });
 
             if(res.ok) {
-                const listing = await res.json();
-                console.log(listing);
+                history.push('/listings');
             }
 
         } catch(err) {
@@ -196,6 +220,9 @@ export default function ListingForm({ context }) {
                 {context === "post" && images.map((imageWrapper, i) => (
                     <div key={i} className="listing-form__uploaded-image-wrapper">
                         <div urlkey={imageWrapper.file.path} className="listing-form__uploaded-image-overlay"  onClick={removeImage}>
+                            <div className="listing-form__uploaded-image-trash">
+                                <i className="fas fa-trash-alt fa-5x"></i>
+                            </div>
                             <UploadedImage image={imageWrapper.file} context="new"/>
                         </div>
                         <div className="listing-form__uploaded-image-label">
@@ -206,6 +233,9 @@ export default function ListingForm({ context }) {
                 {context === "edit" && newImages.map((imageWrapper, i) => (
                     <div key={i} className="listing-form__uploaded-image-wrapper">
                         <div urlkey={imageWrapper.file.path} className="listing-form__uploaded-image-overlay"  onClick={removeImage}>
+                            <div className="listing-form__uploaded-image-trash">
+                                <i className="fas fa-trash-alt"></i>
+                            </div>
                             <UploadedImage image={imageWrapper.file} context="new"/>
                         </div>
                         <div className="listing-form__uploaded-image-label">
@@ -219,6 +249,9 @@ export default function ListingForm({ context }) {
                 {context === "edit" && images.map((image, i) => (
                     <div key={image.id} className="listing-form__uploaded-image-wrapper">
                         <div urlkey={image.id} className="listing-form__uploaded-image-overlay" onClick={removeOldImage}>
+                            <div className="listing-form__uploaded-image-trash">
+                                <i className="fas fa-trash-alt"></i>
+                            </div>
                             <UploadedImage image={image} context="old"/>
                         </div>
                         <div className="listing-form__uploaded-image-label">

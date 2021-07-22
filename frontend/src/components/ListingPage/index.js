@@ -23,7 +23,7 @@ export default function ListingPage() {
 
     const showDeleteListingModal = useSelector(state => state.deleteListingModal.showModal);
 
-    const currentUser = useSelector(state => state.session.user.user.username);
+    const currentUser = useSelector(state => state.session?.user?.user?.username);
 
     const listingId = useParams().id;
 

@@ -29,7 +29,7 @@ export default function ImageViewer({ images, show }) {
                 onClick={() => dispatch(closeImageViewer())}
             >
                 <div className="image-viewer__close-button-container">
-                    <i class="fas fa-times"></i>
+                    <i className="fas fa-times"></i>
                     <div className="span-wrapper">
                         <span className="image-viewer__close-span">Close</span>
                     </div>
