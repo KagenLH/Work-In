@@ -31,7 +31,7 @@ export default function ListingSearch() {
             </div>
             <div className="listing-search__listings-container">
                 {listings.map(listing => (
-                    <NavLink to={`/listings/${listing.id}`} className="listing-search__listing-image-link">
+                    <NavLink key={listing.id} to={`/listings/${listing.id}`} className="listing-search__listing-image-link">
                         <div key={listing.id} className="listing-search__listing-box">
                             <div className="listing-search__listing-image-wrapper">
                                 <img src={listing.Images[0].url} className="listing-search__listing-image"/>

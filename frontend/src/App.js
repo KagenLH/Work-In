@@ -9,7 +9,7 @@ import Modal from "./components/AuthModal";
 import ListingPage from "./components/ListingPage";
 import ListingSearch from "./components/ListingSearch";
 import ListingPost from "./components/ListingPost";
-import ImageViewer from "./components/ListingPage/ImageViewer";
+import ListingEdit from "./components/ListingEdit";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +46,9 @@ function App() {
         </Route>
         <Route path="/listings/create">
           <ListingPost/>
+        </Route>
+        <Route path="/listings/edit/:id(\d+)">
+          <ListingEdit/>
         </Route>
       </Switch>
     </>

@@ -23,6 +23,8 @@ export default function ListingPage() {
 
     const showDeleteListingModal = useSelector(state => state.deleteListingModal.showModal);
 
+    const currentUser = useSelector(state => state.session.user.user.username);
+
     const listingId = useParams().id;
 
     const dispatch = useDispatch();
@@ -107,6 +109,7 @@ export default function ListingPage() {
                                 >
                                     {(images[1] && images[2]) && images.slice(1, 3).map(image => (
                                         <NavLink 
+                                            key={image.url}
                                             className="listing-page__secondary-image-link"
                                             to="#"
                                             onClick={() => {
@@ -125,6 +128,7 @@ export default function ListingPage() {
                                 >
                                     {(images[3] && images[4]) && images.slice(3, 5).map(image => (
                                         <NavLink 
+                                            key={image.url}
                                             className="listing-page__secondary-image-link"
                                             to="#"
                                             onClick={() => {
@@ -182,10 +186,10 @@ export default function ListingPage() {
                     >
                         {description}
                     </div>
-                    {<div className="listing-page__crud-links">
+                    {host === currentUser && <div className="listing-page__crud-links">
                         Need to update something about this listing?
                         <div className="listing-page__links-container">
-                            <NavLink to={`/listings/${listingId}/edit`} className="listing-page__crud-link">
+                            <NavLink to={`/listings/edit/${listingId}`} className="listing-page__crud-link">
                                 Edit listing
                             </NavLink>
                             <span className="listing-page__crud-or">or</span>

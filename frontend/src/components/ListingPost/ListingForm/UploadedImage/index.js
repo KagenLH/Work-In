@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import './UploadedImage.css';
 
-export default function UploadedImage({ image }) {
+export default function UploadedImage({ image, context }) {
     useEffect(() => {
 
     }, []);
     return (
-        <img src={URL.createObjectURL(image)} className="listing-create__uploaded-image"/>
+        <img src={context === "new" ? URL.createObjectURL(image) : image.url} className="listing-create__uploaded-image"/>
     )
 }

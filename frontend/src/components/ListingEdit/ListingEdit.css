@@ -1,0 +1,20 @@
+.listing-edit__container-outer {
+    position: fixed;
+    top: 75px;
+    height: 100%;
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.listing-edit__container {
+    position: relative;
+    width: 1000px;
+    padding: 25px;
+    left: 51%;
+    transform: translateX(-50%);
+}
+
+.listing-edit__header {
+    margin-left: 350px;
+}
