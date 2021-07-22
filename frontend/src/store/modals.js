@@ -4,6 +4,8 @@ const SHOW_SIGNUP_MODAL = '/modals/SHOW_SIGNUP_MODAL';
 const CLOSE_SIGNUP_MODAL = '/modals/CLOSE_SIGNUP_MODAL';
 const SHOW_LISTING_DELETE_MODAL = '/modals/SHOW_LISTING_DELETE_MODAL';
 const CLOSE_LISTING_DELETE_MODAL = '/modals/CLOSE_LISTING_DELETE_MODAL';
+const SHOW_CREATE_BOOKING_MODAL = '/modals/SHOW_CREATE_BOOKING_MODAL';
+const CLOSE_CREATE_BOOKING_MODAL = '/modals/CLOSE_CREATE_BOOKING_MODAL';
 
 export const showLoginModal = () => {
     return {
@@ -21,13 +23,13 @@ export const showSignupModal = () => {
     return {
         type: SHOW_SIGNUP_MODAL
     };
-}
+};
 
 export const closeSignupModal = () => {
     return {
         type: CLOSE_SIGNUP_MODAL
     }
-}
+};
 
 export const showDeleteModal = () => {
     return {
@@ -41,9 +43,21 @@ export const closeDeleteModal = () => {
     };
 };
 
+export const showCreateBookingModal = () => {
+    return {
+        type: SHOW_CREATE_BOOKING_MODAL
+    };
+};
+
+export const closeCreateBookingModal = () => {
+    return {
+        type: CLOSE_CREATE_BOOKING_MODAL
+    };
+};
+
 const initialState = {
     showModal: false
-}
+};
 
 export const loginModalReducer = (state=initialState, action) => {
     switch (action.type) {
@@ -54,7 +68,7 @@ export const loginModalReducer = (state=initialState, action) => {
         default:
             return state;
     }
-}
+};
 
 export const signupModalReducer = (state=initialState, action) => {
     switch (action.type) {
@@ -65,7 +79,7 @@ export const signupModalReducer = (state=initialState, action) => {
         default:
             return state;
     }
-}
+};
 
 export const deleteListingModalReducer = (state=initialState, action) => {
     switch(action.type) {
@@ -76,4 +90,15 @@ export const deleteListingModalReducer = (state=initialState, action) => {
         default:
             return state;
     }
-}
+};
+
+export const createBookingModalReducer = (state=initialState, action) => {
+    switch(action.type) {
+        case SHOW_CREATE_BOOKING_MODAL:
+            return { showModal: true };
+        case CLOSE_CREATE_BOOKING_MODAL:
+            return { showModal: false };
+        default:
+            return state;
+    }
+};

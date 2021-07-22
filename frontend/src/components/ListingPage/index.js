@@ -8,6 +8,7 @@ import { showDeleteModal } from '../../store/modals';
 import ImageViewer from './ImageViewer';
 import DeleteListing from './DeleteListing';
 import BookingBox from './BookingBox';
+import ConfirmBooking from './ConfirmBooking';
 
 import './ListingPage.css';
 
@@ -23,6 +24,7 @@ export default function ListingPage() {
     const [host, setHost] = useState('');
 
     const showDeleteListingModal = useSelector(state => state.deleteListingModal.showModal);
+    const showCreateBookingModal = useSelector(state => state.createBookingModal.showModal);
 
     const currentUser = useSelector(state => state.session?.user?.user?.username);
 
@@ -59,6 +61,7 @@ export default function ListingPage() {
                 coverImageUrl={images[0]?.url}
                 name={name} price={price}
                 listingId={listingId}/>
+            <ConfirmBooking show={showCreateBookingModal}/>
             <ImageViewer show={showImageViewer} images={images.map(image => image.url)}/>
             <div
             className="listing-page-container-outer"
