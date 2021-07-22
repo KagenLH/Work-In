@@ -61,7 +61,7 @@ export default function ListingPage() {
                 coverImageUrl={images[0]?.url}
                 name={name} price={price}
                 listingId={listingId}/>
-            <ConfirmBooking show={showCreateBookingModal}/>
+            <ConfirmBooking show={showCreateBookingModal} image={images[0]?.url} name={name}/>
             <ImageViewer show={showImageViewer} images={images.map(image => image.url)}/>
             <div
             className="listing-page-container-outer"

@@ -57,8 +57,7 @@
 }
 
 .booking-box__book-button {
-    position: absolute;
-    bottom: 15px;
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
     border: none;
@@ -69,6 +68,11 @@
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.booking-box__book-button:disabled {
+    cursor: default;
+    background-color: rgba(250, 128, 114, 0.808);
 }
 
 .booking-box__price-calculations {

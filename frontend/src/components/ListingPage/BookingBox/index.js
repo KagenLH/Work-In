@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 import { showCreateBookingModal } from '../../../store/modals';
@@ -145,6 +145,7 @@ export default function BookingBox({ bookings, price }) {
                 <button
                     className="booking-box__book-button"
                     onClick={() => dispatch(showCreateBookingModal())}
+                    disabled={!finalPrice}
                 >
                     Reserve This Listing
                 </button>

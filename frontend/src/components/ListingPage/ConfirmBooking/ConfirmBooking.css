@@ -11,7 +11,7 @@
     top: 50%;
     left: 50%;
     width: 500px;
-    height: 500px;
+    height: 375px;
     border-radius: 20px;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -31,7 +31,7 @@
     position: absolute;
     background-color: transparent;
     left: 20px;
-    top: 10px;
+    top: 12px;
     border: none;
     cursor: pointer;
     width: 40px;
@@ -44,6 +44,36 @@
 }
 
 .confirm-booking__title {
-    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.confirm-booking__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirm-booking__listing-name {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.confirm-booking__listing-image {
+    height: 200px;
+    width: 300px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.confirm-booking__submit {
+    margin-top: 10px;
+    cursor: pointer;
+    width: 300px;
+    height: 50px;
+    background-color: salmon;
+    border: none;
+    color: white;
+    border-radius: 10px;
 }
 

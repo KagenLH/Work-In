@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import './ConfirmBooking.css';
 import { closeCreateBookingModal } from '../../../store/modals';
 
-export default function ConfirmBooking({ show }) {
+export default function ConfirmBooking({ show, image, name }) {
     const dispatch = useDispatch();
 
     if(!show) {
@@ -25,7 +25,18 @@ export default function ConfirmBooking({ show }) {
                     </div>
                 </div>
                 <div className="confirm-booking__body">
-
+                    <div className="confirm-booking__listing-name">
+                        {name}
+                    </div>
+                    <img
+                        src={image}
+                        className="confirm-booking__listing-image"
+                    />
+                    <button
+                        className="confirm-booking__submit"
+                    >
+                        Reserve Listing
+                    </button>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import { loginModalReducer, signupModalReducer, deleteListingModalReducer, createBookingModalReducer } from "./modals";
 import { imageViewerReducer } from "./imageViewer";
+import bookingReducer from "./booking";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     imageViewer: imageViewerReducer,
     deleteListingModal: deleteListingModalReducer,
     createBookingModal: createBookingModalReducer,
+    booking: bookingReducer,
 });
 
 let enhancer;
