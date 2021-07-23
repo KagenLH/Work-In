@@ -1,5 +1,8 @@
 .listing-search__container {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
     width: 100%;
     top: 75px;
@@ -7,7 +10,7 @@
     padding-left: 55px;
     border-top: 1px solid rgba(211, 211, 211, 0.205);
     box-shadow: inset 0px 0px 60px rgba(0, 0, 0, 0.07);
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .listing-search__listings-container {
@@ -85,9 +88,9 @@
     margin-bottom: 15px;
 }
 
-.listing-search__create-listing {
+/* .listing-search__create-listing {
     margin-right: 50px;
-}
+} */
 
 .listing-search__create-listing-button-label {
     font-size: 14px;
