@@ -18,13 +18,23 @@ export default function ListingSearch() {
 
     useEffect(() => {
         (async function() {
-            const queryString = encodeURIComponent(query.get("search"));
-            const res = await csrfFetch(`/api/search/${queryString}`);
+            if(query.get("search")) {
+                const queryString = encodeURIComponent(query.get("search"));
+                const res = await csrfFetch(`/api/search/${queryString}`);
+    
+                if(res.ok) {
+                    const newListings = await res.json();
+                    setListings(newListings);
+                }
+            } else {
+                const res = await csrfFetch('/api/listings');
 
-            if(res.ok) {
-                const newListings = await res.json();
-                setListings(newListings);
+                if(res.ok) {
+                    const newListings = await res.json();
+                    setListings(newListings);
+                }
             }
+
         })();
     }, [location]);
 
