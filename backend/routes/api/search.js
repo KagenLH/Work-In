@@ -2,7 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { Op } = require("sequelize");
 
-const { Listing } = require("../../db/models");
+const { Listing, Image, User } = require("../../db/models");
 const { parseSearchString } = require("../../utils/parse");
 
 const router = express.Router();
@@ -34,6 +34,7 @@ router.get("/:keyword",
                         },
                     },
                     limit: 5,
+                    include: [Image, User]
                 });
 
                 res.json(results);

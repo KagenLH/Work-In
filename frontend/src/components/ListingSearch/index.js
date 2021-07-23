@@ -1,23 +1,32 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 import { csrfFetch } from '../../store/csrf';
 
 import './ListingSearch.css';
 
+const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+};
+
 export default function ListingSearch() {
     const [listings, setListings] = useState([]);
 
+    const location = useLocation();
+    let query = useQuery();
+
     useEffect(() => {
         (async function() {
-            const res = await csrfFetch('/api/listings');
+            const queryString = encodeURIComponent(query.get("search"));
+            const res = await csrfFetch(`/api/search/${queryString}`);
 
             if(res.ok) {
                 const newListings = await res.json();
                 setListings(newListings);
             }
         })();
-    }, []);
+    }, [location]);
 
     return (
         <div

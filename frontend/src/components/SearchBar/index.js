@@ -21,6 +21,7 @@ export default function SearchBar({ context }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        history.push(`/listings/?search=${searchVal}`);
     };
 
     const fetchResults = async (e) => {
