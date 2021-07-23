@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 import { showCreateBookingModal } from '../../../store/modals';
+import { setBookingInfo } from '../../../store/booking';
+import { formatDate } from '../../../utils/date';
 import './BookingBox.css';
 
 
@@ -49,19 +51,6 @@ export default function BookingBox({ bookings, price }) {
             calcTotal();
         }
     }, [realStartTime, realEndTime]);
-
-    const formatDate = (date) => {
-        if(!date) {
-            return "";
-        }
-        const dateFragments = date.split("-");
-        const [year, month, dayTime] = [...dateFragments];
-
-        const time = dayTime.split('T')[1];
-        const day = dayTime.split('T')[0];
-
-        return `${month}/${day}/${year} at ${time}`;
-    };
 
     return (
         <>
@@ -141,10 +130,23 @@ export default function BookingBox({ bookings, price }) {
                             {`$${finalPrice}`}
                         </div>
                     </div>
+                    <div className="booking-box__no-charge">
+                        You won't be charged yet.
+                    </div>
                 </div>)}
                 <button
                     className="booking-box__book-button"
-                    onClick={() => dispatch(showCreateBookingModal())}
+                    onClick={() => {
+                        dispatch(setBookingInfo({
+                            hours: displayHours,
+                            days: displayDays,
+                            total: finalPrice,
+                            start: realStartTime,
+                            end: realEndTime,
+                        }));
+
+                        dispatch(showCreateBookingModal());
+                    }}
                     disabled={!finalPrice}
                 >
                     Reserve This Listing

@@ -8,17 +8,20 @@ const { Booking } = require("../../db/models");
 
 const validateBooking = [
     check("startTime")
-    .exists({ checkFalsy: true})
-    .isDate()
+    .exists({ checkFalsy: true })
     .withMessage("Start date must be a valid date."),
     check("endTime")
     .exists({ checkFalsy: true })
-    .isDate()
     .withMessage("End date must be a valid date."),
     handleValidationErrors,
 ];
 
 const router = express.Router();
+
+const logRequest = (req, res, next) => {
+    console.log(req.body);
+    next();
+}
 
 router.get('/:id',
             requireAuth,
@@ -39,7 +42,26 @@ router.get('/:id',
                 }
 }));
 
+router.get('/',
+            requireAuth,
+            asyncHandler (async (req, res, next) => {
+                try {
+                    const id = req.user.id;
+
+                    const bookings = await Booking.findAll({
+                        where: {
+                            userId: id
+                        }
+                    });
+
+                    res.json(bookings);
+                } catch(err) {
+                    next(err);
+                }
+}));
+
 router.post('/',
+             logRequest,
              requireAuth,
              validateBooking,
              asyncHandler( async (req, res, next) => {
