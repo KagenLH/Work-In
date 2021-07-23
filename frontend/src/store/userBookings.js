@@ -4,28 +4,28 @@ const ADD_USER_BOOKING = 'userBookings/ADD_USER_BOOKING';
 const LOAD_USER_BOOKINGS = 'userBookings/LOAD_USER_BOOKINGS';
 const REMOVE_USER_BOOKING = 'userBookings/REMOVE_USER_BOOKING';
 
-const addUserBooking = (payload) => {
+export const addUserBooking = (payload) => {
     return {
         type: ADD_USER_BOOKING,
         payload,
     }
 };
 
-const loadUserBookings = (payload) => {
+export const loadUserBookings = (payload) => {
     return {
         type: LOAD_USER_BOOKINGS,
         payload,
     }
 };
 
-const removeUserBooking = (payload) => {
+export const removeUserBooking = (payload) => {
     return {
         type: REMOVE_USER_BOOKING,
         payload,
     }
 };
 
-const fetchUserBookings = () => async dispatch => {
+export const fetchUserBookings = () => async dispatch => {
     const res = await csrfFetch('/api/bookings');
 
     if(res.ok) {

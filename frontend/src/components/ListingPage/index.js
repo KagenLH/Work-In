@@ -27,6 +27,9 @@ export default function ListingPage() {
     const showCreateBookingModal = useSelector(state => state.createBookingModal.showModal);
 
     const currentUser = useSelector(state => state.session?.user?.user?.username);
+    const bookingModalContext = useSelector(state => state.createBookingModal.context);
+
+    const bookingId = useSelector(state => state.booking.id);
 
     const listingId = useParams().id;
 
@@ -61,7 +64,12 @@ export default function ListingPage() {
                 coverImageUrl={images[0]?.url}
                 name={name} price={price}
                 listingId={listingId}/>
-            <ConfirmBooking show={showCreateBookingModal} image={images[0]?.url} name={name}/>
+            <ConfirmBooking
+                show={showCreateBookingModal}
+                image={images[0]?.url}
+                name={name}
+                context={bookingModalContext}
+                id={bookingId}/>
             <ImageViewer show={showImageViewer} images={images.map(image => image.url)}/>
             <div
             className="listing-page-container-outer"

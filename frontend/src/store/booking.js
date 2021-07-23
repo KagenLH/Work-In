@@ -4,6 +4,7 @@ const SET_BOOKING_TOTAL = 'booking/SET_BOOKING_TOTAL';
 const SET_BOOKING_START = 'booking/SET_BOOKING_START';
 const SET_BOOKING_END = 'booking/SET_BOOKING_END';
 const SET_BOOKING_ALL = 'booking/SET_BOOKING_ALL';
+const SET_BOOKING_ID = 'booking/SET_BOOKING_ID';
 
 export const setBookingInfo = (payload) => {
     return {
@@ -47,7 +48,15 @@ export const setBookingEnd = (payload) => {
     };
 };
 
+export const setBookingId = (payload) => {
+    return {
+        type: SET_BOOKING_ID,
+        payload,
+    };
+};
+
 const initialState = {
+    id: null,
     hours: null,
     days: null,
     total: null,
@@ -69,6 +78,8 @@ export default function bookingReducer(state=initialState, action) {
             return { ...state, start: action.payload };
         case SET_BOOKING_END:
             return { ...state, end: action.payload };
+        case SET_BOOKING_ID:
+            return { ...state, id: action.payload };
         default:
             return state;
     }

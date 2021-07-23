@@ -5,6 +5,7 @@ import sessionReducer from './session';
 import { loginModalReducer, signupModalReducer, deleteListingModalReducer, createBookingModalReducer } from "./modals";
 import { imageViewerReducer } from "./imageViewer";
 import bookingReducer from "./booking";
+import userBookingReducer from "./userBookings";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     deleteListingModal: deleteListingModalReducer,
     createBookingModal: createBookingModalReducer,
     booking: bookingReducer,
+    userBookings: userBookingReducer,
 });
 
 let enhancer;

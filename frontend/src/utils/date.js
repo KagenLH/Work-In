@@ -11,6 +11,9 @@ export const formatDate = (date) => {
     return `${month}/${day}/${year} at ${time}`;
 };
 
-export const dbFormat = (date) => {
-    
+export const formatFromDb = (date) => {
+    if(!date) return "";
+
+    const partialFormat = formatDate(date);
+    return partialFormat.split('.')[0];
 };

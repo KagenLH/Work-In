@@ -2,6 +2,7 @@ import { Switch, Route } from "react-router";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { restoreLogin } from "./store/session";
+import { fetchUserBookings } from "./store/userBookings";
 
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
@@ -17,16 +18,31 @@ function App() {
   const signupModal = useSelector(state => state.signupModal.showModal);
 
   const [isLoaded, setIsLoaded] = useState(false);
+  const [userBookingsLoaded, setUserBookingsLoaded] = useState(false);
+
   useEffect(() => {
-    async function tryRestoreLogin() {
-      try {
-        await dispatch(restoreLogin());
-        setIsLoaded(true);
-      } catch (e) {
-  
+    async function tryRestoreSession() {
+      async function tryRestoreLogin() {
+        try {
+          await dispatch(restoreLogin());
+          setIsLoaded(true);
+        } catch (e) {
+          
+        }
+      }
+      await tryRestoreLogin();
+
+      if(isLoaded) {
+        try {
+          await dispatch(fetchUserBookings());
+          setUserBookingsLoaded(true);
+        } catch(err) {
+          console.log("Failed to load all user bookings.");
+        }
       }
     }
-    tryRestoreLogin();
+
+    tryRestoreSession();
   })
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import '../HomePage/HomePage.css';
 import './SearchBar.css'
@@ -9,6 +9,10 @@ export default function SearchBar({ context }) {
     const handleSubmit = (e) => {
         e.preventDefault();
     };
+
+    useEffect(() => {
+        
+    })
 
     return (
         <form

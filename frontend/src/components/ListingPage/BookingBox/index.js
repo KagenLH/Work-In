@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 import moment from 'moment';
 
-import { showCreateBookingModal } from '../../../store/modals';
-import { setBookingInfo } from '../../../store/booking';
-import { formatDate } from '../../../utils/date';
+import { showCreateBookingModal, setBookingModalPost, setBookingModalDelete } from '../../../store/modals';
+import { setBookingInfo, setBookingStart, setBookingEnd, setBookingId} from '../../../store/booking';
+import { formatDate, formatFromDb } from '../../../utils/date';
 import './BookingBox.css';
 
 
-export default function BookingBox({ bookings, price }) {
+export default function BookingBox({ price }) {
     const [startTime, setStartTime] = useState('');
     const [realStartTime, setRealStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
@@ -17,7 +18,12 @@ export default function BookingBox({ bookings, price }) {
     const [displayHours, setDisplayHours] = useState(null);
     const [displayDays, setDisplayDays] = useState(null);
 
+
     const dispatch = useDispatch();
+
+    const listingId = useParams().id;
+
+    const userBooking = useSelector(state => state.userBookings.find(booking => booking?.listingId === parseInt(listingId)));
 
     const calcTotal = () => {
         const startDate = moment(realStartTime);
@@ -144,13 +150,42 @@ export default function BookingBox({ bookings, price }) {
                             start: realStartTime,
                             end: realEndTime,
                         }));
-
+                        
+                        dispatch(setBookingModalPost());
                         dispatch(showCreateBookingModal());
                     }}
-                    disabled={!finalPrice}
+                    disabled={!finalPrice || userBooking}
                 >
                     Reserve This Listing
                 </button>
+                {userBooking && (
+                    <div className="booking-box__pre-existing-booking">
+                        You have a reservation at this workspace
+                        <div className="pre-existing__dates">
+                            <div className="pre-existing__date">
+                                {`From ${formatFromDb(userBooking.startTime)}`}
+                            </div>
+                            <div className="pre-existing__date">
+                                {`To ${formatFromDb(userBooking.endTime)}`}
+                            </div>
+                        </div>
+                        <div className="pre-existing__delete-label">
+                            If you wish to make a new reservation, first 
+                        </div>
+                        <button
+                            className="pre-existing__delete-button"
+                            onClick={() => {
+                                dispatch(setBookingStart(userBooking.startTime));
+                                dispatch(setBookingEnd(userBooking.endTime));
+                                dispatch(setBookingId(userBooking.id));
+                                dispatch(setBookingModalDelete());
+                                dispatch(showCreateBookingModal());
+                            }}
+                        >
+                            cancel your booking
+                        </button>
+                    </div>
+                )}
             </div>
         </>
     )

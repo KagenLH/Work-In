@@ -2,12 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router';
 
 import './ConfirmBooking.css';
+import { addUserBooking, removeUserBooking } from '../../../store/userBookings';
 import { csrfFetch } from '../../../store/csrf';
 import { closeCreateBookingModal } from '../../../store/modals';
 import { formatDate } from '../../../utils/date';
 
-export default function ConfirmBooking({ show, image, name }) {
+export default function ConfirmBooking({ show, image, name, context, id }) {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const listingId = useParams().id;
 
     const bookingInfo = useSelector(state => state.booking);
@@ -31,10 +34,22 @@ export default function ConfirmBooking({ show, image, name }) {
 
         if(res.ok) {
             const booking = await res.json();
-            console.log(booking);
+            dispatch(addUserBooking(booking));
             dispatch(closeCreateBookingModal());
         } else {
             console.log("Something went wrong.");
+        }
+    };
+
+    const deleteBooking = async () => {
+        const res = await csrfFetch(`/api/bookings/${id}`, {
+            method: 'DELETE',
+        });
+
+        if(res.ok) {
+            history.push('/listings');
+            dispatch(removeUserBooking(id));
+            dispatch(closeCreateBookingModal());
         }
     };
 
@@ -49,7 +64,7 @@ export default function ConfirmBooking({ show, image, name }) {
                         <i className="fas fa-times"></i>
                     </button>
                     <div className="confirm-booking__title">
-                        Confirm your booking
+                        {context === "post" ? 'Confirm your booking' : 'Confirm booking cancelation'}
                     </div>
                 </div>
                 <div className="confirm-booking__body">
@@ -70,22 +85,22 @@ export default function ConfirmBooking({ show, image, name }) {
                             </div>
                         </div>
                         <div className="confirm-booking__days-hours">
-                            {`${bookingInfo.days} days and ${bookingInfo.hours} hours`}
+                            {context === "post" && `${bookingInfo.days} days and ${bookingInfo.hours} hours`}
                         </div>
                         <div className="confirm-booking__total">
                             <div className="confirm-booking__total-title">
-                                Total:
+                                {context === "post" && 'Total: '}
                             </div>
                             <div className="confirm-booking__total-value">
-                                {`$${bookingInfo.total}`}
+                                {context === "post" && `$${bookingInfo.total}`}
                             </div>
                         </div>
                     </div>
                     <button
                         className="confirm-booking__submit"
-                        onClick={createBooking}
+                        onClick={context==="post" ? createBooking : deleteBooking}
                     >
-                        Reserve Listing
+                        {context === "post" ? `Reserve Listing` : `Cancel Booking`}
                     </button>
                 </div>
             </div>

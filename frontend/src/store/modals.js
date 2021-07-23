@@ -6,6 +6,8 @@ const SHOW_LISTING_DELETE_MODAL = '/modals/SHOW_LISTING_DELETE_MODAL';
 const CLOSE_LISTING_DELETE_MODAL = '/modals/CLOSE_LISTING_DELETE_MODAL';
 const SHOW_CREATE_BOOKING_MODAL = '/modals/SHOW_CREATE_BOOKING_MODAL';
 const CLOSE_CREATE_BOOKING_MODAL = '/modals/CLOSE_CREATE_BOOKING_MODAL';
+const BOOKING_MODAL_POST = '/modals/BOOKING_MODAL_POST';
+const BOOKING_MODAL_DELETE = '/modals/BOOKING_MODAL_DELETE';
 
 export const showLoginModal = () => {
     return {
@@ -55,8 +57,25 @@ export const closeCreateBookingModal = () => {
     };
 };
 
+export const setBookingModalPost = () => {
+    return {
+        type: BOOKING_MODAL_POST,
+    };
+};
+
+export const setBookingModalDelete = () => {
+    return {
+        type: BOOKING_MODAL_DELETE,
+    };
+};
+
 const initialState = {
     showModal: false
+};
+
+const initialBookingState = {
+    showModal: false,
+    context: "post",
 };
 
 export const loginModalReducer = (state=initialState, action) => {
@@ -92,12 +111,16 @@ export const deleteListingModalReducer = (state=initialState, action) => {
     }
 };
 
-export const createBookingModalReducer = (state=initialState, action) => {
+export const createBookingModalReducer = (state=initialBookingState, action) => {
     switch(action.type) {
         case SHOW_CREATE_BOOKING_MODAL:
-            return { showModal: true };
+            return { ...state, showModal: true };
         case CLOSE_CREATE_BOOKING_MODAL:
-            return { showModal: false };
+            return { ...state, showModal: false };
+        case BOOKING_MODAL_POST:
+            return { ...state, context: "post" };
+        case BOOKING_MODAL_DELETE:
+            return { ...state, context: "delete" };
         default:
             return state;
     }
