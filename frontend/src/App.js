@@ -11,6 +11,7 @@ import ListingPage from "./components/ListingPage";
 import ListingSearch from "./components/ListingSearch";
 import ListingPost from "./components/ListingPost";
 import ListingEdit from "./components/ListingEdit";
+import SearchOverlay from "./components/SearchOverlay";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function App() {
   return (
     <>
       <Navigation/>
+      <SearchOverlay/>
       <Modal show={loginModal} authType='login'/>
       <Modal show={signupModal} authType="signup"/>
       <Switch>

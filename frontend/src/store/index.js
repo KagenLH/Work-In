@@ -6,6 +6,7 @@ import { loginModalReducer, signupModalReducer, deleteListingModalReducer, creat
 import { imageViewerReducer } from "./imageViewer";
 import bookingReducer from "./booking";
 import userBookingReducer from "./userBookings";
+import searchBubbleReducer from "./search";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     createBookingModal: createBookingModalReducer,
     booking: bookingReducer,
     userBookings: userBookingReducer,
+    search: searchBubbleReducer,
 });
 
 let enhancer;

@@ -24,3 +24,12 @@
 .navbar__search-input:not(:focus):valid ~ .homepage__search-submit {
     transform: translateY(-20px);
 } */
+
+.searchbar__dropdown {
+    width: 350px;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+}
