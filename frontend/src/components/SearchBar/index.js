@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import { showSearchBubble, hideSearchBubble } from '../../store/search';
 import '../HomePage/HomePage.css';
@@ -14,6 +15,7 @@ export default function SearchBar({ context }) {
     const showBubble = useSelector(state => state.search.show);
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -78,7 +80,13 @@ export default function SearchBar({ context }) {
                         <li key={result.id}
                             className="searchbar__result"
                         >
-                            <div className="searchbar__result-text">
+                            <div
+                                className="searchbar__result-text"
+                                onClick={() => {
+                                    dispatch(hideSearchBubble());
+                                    history.push(`/listings/${result.id}`)
+                                }}
+                            >
                                 <span className="searchbar__map-marker-wrapper">
                                     <i className="fas fa-map-marker-alt"></i>
                                 </span>
