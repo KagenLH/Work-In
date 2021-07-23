@@ -18,6 +18,9 @@ export default function SearchBar({ context }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+    };
+
+    const fetchResults = async (e) => {
         const queryString = encodeURIComponent(searchVal);
 
         const res = await csrfFetch(`/api/search/${queryString}`);
@@ -60,6 +63,7 @@ export default function SearchBar({ context }) {
                     type="text"
                     value={searchVal}
                     onChange={(e) => setSearchVal(e.target.value)}
+                    onKeyUp={fetchResults}
                     placeholder="Find your listing..."
                 >
                 </input>
@@ -71,7 +75,16 @@ export default function SearchBar({ context }) {
             >
                 <ul className="searchbar__results">
                     {searchResults.map(result => (
-                        <li key={result.id}>{`${result.name}`}</li>
+                        <li key={result.id}
+                            className="searchbar__result"
+                        >
+                            <div className="searchbar__result-text">
+                                <span className="searchbar__map-marker-wrapper">
+                                    <i className="fas fa-map-marker-alt"></i>
+                                </span>
+                                {`${result.name} - ${result.city}, ${result.state}`}
+                            </div>
+                        </li>
                     ))}
                 </ul>
             </div>)}

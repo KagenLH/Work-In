@@ -26,10 +26,42 @@
 } */
 
 .searchbar__dropdown {
-    width: 350px;
+    width: 500px;
+    border-radius: 30px;
     position: absolute;
-    top: 100px;
+    top: 85px;
     left: 50%;
+    overflow: clip;
     transform: translateX(-50%);
     background-color: white;
+}
+
+.searchbar__results {
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+
+.searchbar__result {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+}
+
+.searchbar__result-text {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 60px;
+    padding: 20px;
+}
+
+.searchbar__result-text:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.searchbar__map-marker-wrapper {
+    font-size: 22px;
+    margin-right: 15px;
 }
