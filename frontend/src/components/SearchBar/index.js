@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import { showSearchBubble, hideSearchBubble } from '../../store/search';
 import '../HomePage/HomePage.css';
 import './SearchBar.css';
+import logo from '../../assets/images/work-in-logo.png';
 
 import { csrfFetch } from '../../store/csrf';
 
@@ -50,52 +51,59 @@ export default function SearchBar({ context }) {
 
     return (
         <>
-            <form
-                onSubmit={handleSubmit}
-                className={context === 'home' ? "homepage__search" : "navbar__search"}
-            >
-                <button
-                    className="homepage__search-submit"
-                    onClick={handleSubmit}
+            <div className={context === "home" ? "search-form-container" : "nav-search-form-container"}>
+                {showBubble && context === "home" && (
+                    <img src={logo} className="home-search-logo"/>
+                )}
+                <form
+                    onSubmit={handleSubmit}
+                    className={context === 'home' ? "homepage__search" : "navbar__search"}
                 >
-                    <i className="fas fa-search search-icon"></i>
-                </button>
-                <input
-                    className={context === 'home' ? "homepage__search-input" : "navbar__search-input"}
-                    type="text"
-                    value={searchVal}
-                    onChange={(e) => setSearchVal(e.target.value)}
-                    onKeyUp={fetchResults}
-                    placeholder="Find your listing..."
+                    <button
+                        className="homepage__search-submit"
+                        onClick={handleSubmit}
+                    >
+                        <div className={context === "home" ? "search-icon__wrapper-home" : "search-icon__wrapper-nav"}>
+                            <i className="fas fa-search search-icon"></i>
+                        </div>
+                    </button>
+                    <input
+                        className={context === 'home' ? "homepage__search-input" : "navbar__search-input"}
+                        type="text"
+                        value={searchVal}
+                        onChange={(e) => setSearchVal(e.target.value)}
+                        onKeyUp={fetchResults}
+                        placeholder="Find your listing..."
+                    >
+                    </input>
+                </form>
+                {showBubble && 
+                (<div
+                    className={context === "home" ? "homepage__dropdown" : "searchbar__dropdown"}
+                    onClick={(e) => e.stopPropagation()}
                 >
-                </input>
-            </form>
-            {showBubble && 
-            (<div
-                className="searchbar__dropdown"
-                onClick={(e) => e.stopPropagation()}
-            >
-                <ul className="searchbar__results">
-                    {searchResults.map(result => (
-                        <li key={result.id}
-                            className="searchbar__result"
-                        >
-                            <div
-                                className="searchbar__result-text"
-                                onClick={() => {
-                                    dispatch(hideSearchBubble());
-                                    history.push(`/listings/${result.id}`)
-                                }}
+                    <ul className="searchbar__results">
+                        {searchResults.map(result => (
+                            <li key={result.id}
+                                className="searchbar__result"
                             >
-                                <span className="searchbar__map-marker-wrapper">
-                                    <i className="fas fa-map-marker-alt"></i>
-                                </span>
-                                {`${result.name} - ${result.city}, ${result.state}`}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </div>)}
+                                <div
+                                    className="searchbar__result-text"
+                                    onClick={() => {
+                                        dispatch(hideSearchBubble());
+                                        history.push(`/listings/${result.id}`)
+                                    }}
+                                >
+                                    <span className="searchbar__map-marker-wrapper">
+                                        <i className="fas fa-map-marker-alt"></i>
+                                    </span>
+                                    {`${result.name} - ${result.city}, ${result.state}`}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>)}
+            </div>
         </>
     )
 }

@@ -28,11 +28,22 @@
 .searchbar__dropdown {
     width: 500px;
     border-radius: 30px;
-    position: absolute;
+    position: fixed;
     top: 85px;
     left: 50%;
     overflow: clip;
     transform: translateX(-50%);
+    background-color: white;
+    z-index: 11;
+}
+
+
+.homepage__dropdown {
+    position: relative;
+    margin-top: 20px;
+    width: 95%;
+    margin-left: 3%;
+    border-radius: 40px;
     background-color: white;
 }
 

@@ -15,7 +15,7 @@ export default function Navigation() {
     const sessionUser = useSelector(state => state.session.user);
  
     return (
-        <div className="nav-bar" style={currentUrl.pathname.includes("/listings") ? {width: '1000px', left: '51%', transform: 'translateX(-50%)', height: '70px', justifyContent: 'space-between'} : {width: '100%'} }>
+        <div className="nav-bar" style={currentUrl.pathname.includes("/listings") ? {width: '1000px', left: '51%', transform: 'translateX(-50%)', height: '70px', justifyContent: 'space-between'} : {width: '100%', zIndex: '1'} }>
             {currentUrl.pathname.includes("listings") && 
             <>
                 <NavLink exact to="/" className="nav-bar-logo">

@@ -14,9 +14,9 @@ export default function SearchOverlay() {
         position: 'fixed',
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.35)',
-        top: currentUrl.pathname === '/' ? '30px' : '75px',
-        zIndex: '1',
+        backgroundColor: currentUrl.pathname === '/' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0.35)',
+        top: currentUrl.pathname === '/' ? '0' : '75px',
+        zIndex: '2',
     };
 
     return (
