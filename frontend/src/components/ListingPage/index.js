@@ -24,6 +24,8 @@ export default function ListingPage() {
     const [images, setImages] = useState([]);
     const [host, setHost] = useState('');
 
+    const listingId = useParams().id;
+
     const showDeleteListingModal = useSelector(state => state.deleteListingModal.showModal);
     const showCreateBookingModal = useSelector(state => state.createBookingModal.showModal);
 
@@ -31,8 +33,9 @@ export default function ListingPage() {
     const bookingModalContext = useSelector(state => state.createBookingModal.context);
 
     const bookingId = useSelector(state => state.booking.id);
+    const userBooking = useSelector(state => state.userBookings.find(booking => booking.listingId === parseInt(listingId)));
 
-    const listingId = useParams().id;
+
 
     const dispatch = useDispatch();
 
@@ -202,9 +205,11 @@ export default function ListingPage() {
                     >
                         {description}
                     </div>
+                    {userBooking && (
                     <div className="listing-page__review-section">
-                        <ReviewCreate/>
+                        <ReviewCreate host={host} booking={userBooking}/>
                     </div>
+                    )}
                     {host === currentUser && <div className="listing-page__crud-links">
                         Need to update something about this listing?
                         <div className="listing-page__links-container">

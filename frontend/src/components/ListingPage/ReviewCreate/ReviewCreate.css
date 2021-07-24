@@ -1,3 +1,8 @@
+.review-create__container {
+    margin-top: 55px;
+    font-weight: bold;
+}
+
 .review-create__form {
     width: 500px;
     display: flex;
@@ -16,7 +21,9 @@
 
 .review-create__form-rating {
     width: 300px;
-    margin-right: 100px;
+    right: 200px;
+    margin-top: 5px;
+    font-weight: normal;
     unicode-bidi: bidi-override;
     direction: rtl;
     align-self: center;
@@ -53,6 +60,50 @@
 }
 
 .review-create__form-input {
-    width: 300px;
-    height: 150px;
+    position: relative;
+    border-radius: 10px;
+    left: 50px;
+    width: 625px;
+    height: 200px;
+    resize: none;
+    padding: 20px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.review-create__form-input:focus {
+    border: 2px solid cornflowerblue;
+    outline: none;
+}
+
+.review-create__submit-button {
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    position: relative;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.review-create__buttons-container {
+    display: flex;
+    position: relative;
+    left: 50px;
+    width: 625px;
+    justify-content: space-between;
+}
+
+.review-create__clear-text {
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    position: relative;
+    margin-top: 5px;
+    border-radius: 5px;
 }

@@ -45,7 +45,7 @@ router.post('/',
                                         userId,
                                     },
                                 },
-                                default: {
+                                defaults: {
                                     userId,
                                     bookingId,
                                     numStars,
@@ -59,7 +59,7 @@ router.post('/',
                                 next(err);
                             }
 
-                            res.json(reviewCreated);
+                            res.json(review);
                         }
                     } catch (err) {
                         next(err);
