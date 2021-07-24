@@ -257,3 +257,9 @@
     display: flex;
     justify-content: space-between;
 }
+
+.listing-page__review-section {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    width: 625px;
+    padding: 20px;
+}
