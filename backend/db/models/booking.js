@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Booking.belongsTo(models.User, { foreignKey: 'userId' });
     Booking.belongsTo(models.Listing, { foreignKey: 'listingId' });
+    Booking.hasOne(models.Review, { foreignKey: "bookingId", onDelete: 'CASCADE', hooks: true });
   };
   return Booking;
 };

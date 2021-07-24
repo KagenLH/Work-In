@@ -1,0 +1,48 @@
+.review-create__container {
+    width: 500px;
+}
+
+.review-create__form-clear {
+    float: none;
+    clear: both;
+}
+
+.hide {
+    display: none;
+}
+
+.review-create__form-rating {
+    width: 90px;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
+}
+
+.review-create__form-rating > label {
+    float: right;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    font-size: 36px;
+    position: relative;
+    width: 1.1em;
+    cursor: pointer;
+    color: black;
+}
+
+.review-create__form-rating > label:hover,
+.review-create__form-rating > label:hover ~ label,
+.review-create__form-rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+.review-create__form-rating > label:hover:before,
+.review-create__form-rating > label:hover ~ label:before,
+.review-create__form-rating > input.radio-btn:checked ~ label:before,
+.review-create__form-rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+}

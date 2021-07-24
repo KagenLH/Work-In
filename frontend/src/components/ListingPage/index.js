@@ -9,6 +9,7 @@ import ImageViewer from './ImageViewer';
 import DeleteListing from './DeleteListing';
 import BookingBox from './BookingBox';
 import ConfirmBooking from './ConfirmBooking';
+import ReviewCreate from './ReviewCreate';
 
 import './ListingPage.css';
 
@@ -200,6 +201,9 @@ export default function ListingPage() {
                         className="listing-page__description"
                     >
                         {description}
+                    </div>
+                    <div className="listing-page__review-section">
+                        <ReviewCreate/>
                     </div>
                     {host === currentUser && <div className="listing-page__crud-links">
                         Need to update something about this listing?
