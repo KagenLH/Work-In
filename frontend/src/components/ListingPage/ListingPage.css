@@ -106,7 +106,6 @@
 
 .listing-page__title-address {
     color:rgba(0, 0, 0, 0.5);
-    margin-top: 5px;
 }
 
 .listing-page__full-address {
@@ -262,4 +261,35 @@
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     width: 625px;
     padding: 20px;
+}
+
+.listing-page__title-address-and-score {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.listing-page__title-score-number {
+    font-weight: bolder;
+    margin-left: 5px;
+}
+
+.listing-page__title-score-star {
+    color: salmon;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.listing-page__title-score {
+    display: flex;
+    align-items: center;
+}
+
+.listing-page__title-score-reviews {
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.listing-page__title-address {
+    margin-left: 10px;
 }

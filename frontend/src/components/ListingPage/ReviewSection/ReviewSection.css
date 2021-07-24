@@ -1,0 +1,44 @@
+.review-section__container {
+    position: relative;
+    margin-top: 35px;
+}
+
+.review-section__header-title {
+    display: flex;
+    align-items: center;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.review-section__header-title-star {
+    font-size: 20px;
+    color: salmon;
+    margin-right: 10px;
+}
+
+.review-section__body {
+    margin-top: 30px;
+}
+
+.review-section__review {
+    width: 400px;
+}
+
+.review-header {
+    margin-bottom: 15px;
+}
+
+.review-content {
+    padding-left: 10px;
+}
+
+.review-username {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-date {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+}

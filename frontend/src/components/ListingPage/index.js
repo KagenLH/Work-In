@@ -26,6 +26,7 @@ export default function ListingPage() {
     const [images, setImages] = useState([]);
     const [host, setHost] = useState('');
     const [reviews, setReviews] = useState([]);
+    const [average, setAverage] = useState(0);
 
     const listingId = useParams().id;
 
@@ -65,6 +66,10 @@ export default function ListingPage() {
         })();
     }, [listingId]);
 
+    useEffect(() => {
+        setAverage(reviews.reduce((accum, review) => accum + review.numStars, 0) / reviews.length);
+    }, [reviews])
+
     return (
         <>
             <DeleteListing
@@ -93,10 +98,25 @@ export default function ListingPage() {
                         >
                             {name}
                         </div>
-                        <div 
-                            className="listing-page__title-address"
-                        >
-                            {city}, {state}, {country}
+                        <div className="listing-page__title-address-and-score">
+                            {reviews.length > 0 && (
+                            <div className="listing-page__title-score">
+                                <div className="listing-page__title-score-star">
+                                    <i className="fas fa-star"></i>
+                                </div>
+                                <span className="listing-page__title-score-number">
+                                    {average.toFixed(2)}
+                                </span>
+                                <span className="listing-page__title-score-reviews">
+                                {` (${reviews.length} reviews) -`}
+                                </span>
+                            </div>
+                            )}
+                            <div 
+                                className="listing-page__title-address"
+                            >
+                                {city}, {state}, {country}
+                            </div>
                         </div>
                     </div>
                     <div
@@ -215,7 +235,9 @@ export default function ListingPage() {
                     {userBooking && isBookingPast && (
                         <ReviewCreate host={host} booking={userBooking}/>
                     )}
-                        <ReviewSection reviews={reviews}/>
+                        {(reviews.length > 0 && 
+                            <ReviewSection reviews={reviews} average={average}/>
+                        )}
                     </div>
                     {host === currentUser && <div className="listing-page__crud-links">
                         Need to update something about this listing?

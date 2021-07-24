@@ -61,7 +61,10 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
         const listing = await Listing.findByPk(id, {
             include: [Image, User, {
                 model: Booking,
-                include: Review,
+                include: {
+                    model: Review,
+                    include: [User, Booking]
+                },
             }],
         });
         res.json(listing);

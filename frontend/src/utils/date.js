@@ -17,3 +17,11 @@ export const formatFromDb = (date) => {
     const partialFormat = formatDate(date);
     return partialFormat.split('.')[0];
 };
+
+export const formatForReview = (date) => {
+    const splitDate = date.split(" ");
+    const month = splitDate[1];
+    const year = splitDate[3];
+
+    return `${month} ${year}`;
+}
