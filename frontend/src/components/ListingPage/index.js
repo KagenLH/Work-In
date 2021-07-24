@@ -10,6 +10,7 @@ import ImageViewer from './ImageViewer';
 import DeleteListing from './DeleteListing';
 import BookingBox from './BookingBox';
 import ConfirmBooking from './ConfirmBooking';
+import ReviewSection from './ReviewSection';
 import ReviewCreate from './ReviewCreate';
 
 import './ListingPage.css';
@@ -24,6 +25,7 @@ export default function ListingPage() {
     const [price, setPrice] = useState(20);
     const [images, setImages] = useState([]);
     const [host, setHost] = useState('');
+    const [reviews, setReviews] = useState([]);
 
     const listingId = useParams().id;
 
@@ -58,6 +60,7 @@ export default function ListingPage() {
                 setDescription(listing.description);
                 setPrice(listing.price);
                 setHost(listing.User.username);
+                setReviews(listing.Bookings.map(booking => booking.Review));
             }
         })();
     }, [listingId]);
@@ -199,18 +202,21 @@ export default function ListingPage() {
                                 {address}, {city}, {state}, {country}
                             </div>
                         </div>
-                        <BookingBox price={price}/>
+                        {host !== currentUser && (
+                            <BookingBox price={price}/>
+                        )}
                     </div>
                     <div 
                         className="listing-page__description"
                     >
                         {description}
                     </div>
-                    {userBooking && isBookingPast && (
                     <div className="listing-page__review-section">
+                    {userBooking && isBookingPast && (
                         <ReviewCreate host={host} booking={userBooking}/>
-                    </div>
                     )}
+                        <ReviewSection reviews={reviews}/>
+                    </div>
                     {host === currentUser && <div className="listing-page__crud-links">
                         Need to update something about this listing?
                         <div className="listing-page__links-container">

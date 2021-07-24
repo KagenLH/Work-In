@@ -6,7 +6,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { restoreUser } = require("../../utils/auth");
 const { multipleMulterUpload, multiplePublicFileUpload } = require("../../awsS3");
 
-const { Listing, Image, User } = require("../../db/models");
+const { Listing, Image, User, Review, Booking } = require("../../db/models");
 
 const router = express.Router();
 
@@ -59,7 +59,10 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 
     try {
         const listing = await Listing.findByPk(id, {
-            include: [Image, User]
+            include: [Image, User, {
+                model: Booking,
+                include: Review,
+            }],
         });
         res.json(listing);
     } catch (err) {
@@ -70,7 +73,7 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 router.get('/', asyncHandler( async (req, res, next) => {
     try {
         const listings = await Listing.findAll({
-            include: [Image, User]
+            include: [Image, User],
         });
         res.json(listings);
     } catch (err) {
