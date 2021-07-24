@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import moment from 'moment';
 
-import { showCreateBookingModal, setBookingModalPost, setBookingModalDelete } from '../../../store/modals';
+import { useBookingPast } from '../../../utils/hooks';
+import { showCreateBookingModal, setBookingModalPost, setBookingModalDelete, showLoginModal } from '../../../store/modals';
 import { setBookingInfo, setBookingStart, setBookingEnd, setBookingId} from '../../../store/booking';
 import { formatDate, formatFromDb } from '../../../utils/date';
 import './BookingBox.css';
@@ -23,7 +24,11 @@ export default function BookingBox({ price }) {
 
     const listingId = useParams().id;
 
+    const user = useSelector(state => state.session.user);
+
     const userBooking = useSelector(state => state.userBookings.find(booking => booking?.listingId === parseInt(listingId)));
+
+    const isBookingPast = useBookingPast(userBooking);
 
     const calcTotal = () => {
         const startDate = moment(realStartTime);
@@ -143,22 +148,26 @@ export default function BookingBox({ price }) {
                 <button
                     className="booking-box__book-button"
                     onClick={() => {
-                        dispatch(setBookingInfo({
-                            hours: displayHours,
-                            days: displayDays,
-                            total: finalPrice,
-                            start: realStartTime,
-                            end: realEndTime,
-                        }));
-                        
-                        dispatch(setBookingModalPost());
-                        dispatch(showCreateBookingModal());
+                        if(!user) {
+                            dispatch(showLoginModal());
+                        } else {
+                            dispatch(setBookingInfo({
+                                hours: displayHours,
+                                days: displayDays,
+                                total: finalPrice,
+                                start: realStartTime,
+                                end: realEndTime,
+                            }));
+                            
+                            dispatch(setBookingModalPost());
+                            dispatch(showCreateBookingModal());
+                        }
                     }}
-                    disabled={!finalPrice || userBooking}
+                    disabled={!finalPrice || userBooking }
                 >
                     Reserve This Listing
                 </button>
-                {userBooking && (
+                {userBooking && !isBookingPast && (
                     <div className="booking-box__pre-existing-booking">
                         You have a reservation at this workspace
                         <div className="pre-existing__dates">
@@ -184,6 +193,19 @@ export default function BookingBox({ price }) {
                         >
                             cancel your booking
                         </button>
+                    </div>
+                )}
+                {isBookingPast && (
+                    <div className="booking-box__previous-stay">
+                        You worked here recently
+                        <div className="pre-existing__dates">
+                            <div className="pre-existing__date">
+                                {`From ${formatFromDb(userBooking.startTime)}`}
+                            </div>
+                            <div className="pre-existing__date">
+                                {`To ${formatFromDb(userBooking.endTime)}`}
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>

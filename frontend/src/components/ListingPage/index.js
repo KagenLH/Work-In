@@ -3,6 +3,7 @@ import { useParams, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { csrfFetch } from '../../store/csrf';
+import { useBookingPast } from '../../utils/hooks';
 import { openImageViewer, setCurrentImage } from '../../store/imageViewer';
 import { showDeleteModal } from '../../store/modals';
 import ImageViewer from './ImageViewer';
@@ -35,7 +36,7 @@ export default function ListingPage() {
     const bookingId = useSelector(state => state.booking.id);
     const userBooking = useSelector(state => state.userBookings.find(booking => booking.listingId === parseInt(listingId)));
 
-
+    const isBookingPast = useBookingPast(userBooking);
 
     const dispatch = useDispatch();
 
@@ -205,7 +206,7 @@ export default function ListingPage() {
                     >
                         {description}
                     </div>
-                    {userBooking && (
+                    {userBooking && isBookingPast && (
                     <div className="listing-page__review-section">
                         <ReviewCreate host={host} booking={userBooking}/>
                     </div>

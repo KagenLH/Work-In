@@ -63,9 +63,10 @@
     position: absolute;
     list-style: none;
     background-color: rgb(241, 240, 240);
-    right: 5px;
-    top: 40px;
+    right: 20px;
+    top: 50px;
     padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     z-index: 2
 }

@@ -139,3 +139,10 @@
 .pre-existing__delete-button:hover {
     color: cornflowerblue;
 }
+
+.booking-box__previous-stay {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router';
 
 import { logoutUser } from "../../store/session";
 
@@ -8,6 +9,8 @@ import './Navigation.css'
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+
+  const location = useLocation();
   
   const openMenu = () => {
     if (showMenu) return;
@@ -37,7 +40,7 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-cog" />
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
+        <ul className="profile-dropdown" style={location.pathname === '/' ? { top: '40px'} : { } }>
           <li className="dropdown-info">{user.user.username}</li>
           <li className="dropdown-info">{user.user.email}</li>
           <li className="dropdown-info">
