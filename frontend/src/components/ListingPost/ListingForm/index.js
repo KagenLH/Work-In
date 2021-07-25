@@ -29,7 +29,7 @@ export default function ListingForm({ context }) {
         } else {
             setNewImages(current => [...current, ...mappedAcc, ...rejectedFiles]);
         }
-    }, []);
+    }, [context]);
 
     const { getRootProps, getInputProps } = useDropzone({onDrop});
 
@@ -47,7 +47,7 @@ export default function ListingForm({ context }) {
                 method: 'DELETE',
             });
             if(res.ok) {
-                const msg = await res.json();
+                await res.json();
                 const imageRes = await csrfFetch(`/api/listings/${listingId}`);
                 if(imageRes.ok) {
                     const listing = await imageRes.json();
@@ -126,7 +126,7 @@ export default function ListingForm({ context }) {
                 }
             })();
         }
-    }, []);
+    }, [context, listingId]);
 
     return (
         <form

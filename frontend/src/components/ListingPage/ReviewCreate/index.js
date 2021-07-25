@@ -1,33 +1,25 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { csrfFetch } from '../../../store/csrf';
+import { createReview } from '../../../store/reviews';
 
 import './ReviewCreate.css';
 
 export default function ReviewCreate({ host, booking }) {
     const [numStars, setNumStars] = useState("3.0");
     const [content, setContent] = useState('');
+    
+    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const reqNumStars = parseFloat(numStars);
 
-        const res = await csrfFetch('/api/reviews', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                bookingId: booking.id,
-                numStars: reqNumStars,
-                content,
-            }),
-        });
-
-        if(res.ok) {
-            const review = await res.json();
-            console.log(review);
-        } else {
-            console.log("Something went wrong creating the review.");
-        }
+        await dispatch(createReview({
+            bookingId: booking.id,
+            numStars: reqNumStars,
+            content,
+        }));
     };
 
     const clearInput = (e) => {

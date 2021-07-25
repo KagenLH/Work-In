@@ -73,6 +73,7 @@ export default function ConfirmBooking({ show, image, name, context, id }) {
                     </div>
                     <img
                         src={image}
+                        alt="\A"
                         className="confirm-booking__listing-image"
                     />
                     <div className="confirm-booking__booking-info">

@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 
 import { closeImageViewer, setCurrentImage } from '../../../store/imageViewer';
 import ImageViewerImage from './ImageViewerImage';

@@ -43,7 +43,7 @@ export default function DeleteListing({ show, coverImageUrl, name, price, listin
                         <div className="delete-listing__body-name">
                             {name}
                         </div>
-                        <img src={coverImageUrl} className="delete-listing__body-image"/>
+                        <img src={coverImageUrl} alt="\A" className="delete-listing__body-image"/>
                         <div className="delete-listing__body-price">
                             {`$${price} / hour`}
                         </div>

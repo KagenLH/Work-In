@@ -6,6 +6,6 @@ export default function UploadedImage({ image, context }) {
 
     }, []);
     return (
-        <img src={context === "new" ? URL.createObjectURL(image) : image.url} className="listing-create__uploaded-image"/>
+        <img src={context === "new" ? URL.createObjectURL(image) : image.url} className="listing-create__uploaded-image" alt="\A"/>
     )
 }

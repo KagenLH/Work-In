@@ -28,7 +28,7 @@ export default function Modal ({show, authType}) {
                     </h2>
                 </div>
                 <div className="auth-modal__body">
-                    <img src={logo} className="auth-modal__logo"/>
+                    <img src={logo} className="auth-modal__logo" alt="\A"/>
                     {authType === 'login' ? 
                     <LoginForm/>
                     :

@@ -1,14 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { formatForReview } from '../../../utils/date';
+import { deleteReview } from '../../../store/reviews';
 import './ReviewSection.css';
 
 export default function ReviewSection({ reviews, average }) {
 
     const user = useSelector(state => state.session.user?.user);
 
-    const userReview = reviews.find(review => review.userId === user?.id);
+    const dispatch = useDispatch();
+
+    const [userReview, setUserReview] = useState(reviews.find(review => review?.userId === user?.id));
     const otherReviews = reviews.filter(review => review.userId !== user?.id);
+
+    const destroyReview = async () => {
+        await dispatch(deleteReview(userReview.id));
+        setUserReview(null);
+    };
 
     if(!reviews.length) return null;
 
@@ -52,6 +61,7 @@ export default function ReviewSection({ reviews, average }) {
                             </button>
                             <button 
                                 className="review-user-review__delete"
+                                onClick={destroyReview}
                             >
                                 Delete Review
                             </button>

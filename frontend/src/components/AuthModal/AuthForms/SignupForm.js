@@ -31,7 +31,7 @@ export default function SignupForm() {
         e.preventDefault();
         if(password === confirmPassword) {
             try {
-                const user = await dispatch(signUp({username, email, password}));
+                await dispatch(signUp({username, email, password}));
                 dispatch(closeSignupModal());
                 return (
                     <Redirect to="/listings"/>

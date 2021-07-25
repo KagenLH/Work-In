@@ -48,13 +48,13 @@ export default function SearchBar({ context }) {
         document.addEventListener('click', closeBubble);
 
         return () => document.removeEventListener('click', closeBubble);
-    }, [showBubble]);
+    }, [showBubble, dispatch]);
 
     return (
         <>
             <div className={context === "home" ? "search-form-container" : "nav-search-form-container"}>
                 {showBubble && context === "home" && (
-                    <img src={logo} className="home-search-logo"/>
+                    <img src={logo} className="home-search-logo" alt="\A"/>
                 )}
                 <form
                     onSubmit={handleSubmit}

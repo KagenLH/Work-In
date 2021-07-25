@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { csrfFetch } from '../../store/csrf';
 import { useBookingPast } from '../../utils/hooks';
+import { setReviews } from '../../store/reviews';
 import { openImageViewer, setCurrentImage } from '../../store/imageViewer';
 import { showDeleteModal } from '../../store/modals';
 import ImageViewer from './ImageViewer';
@@ -25,7 +26,6 @@ export default function ListingPage() {
     const [price, setPrice] = useState(20);
     const [images, setImages] = useState([]);
     const [host, setHost] = useState('');
-    const [reviews, setReviews] = useState([]);
     const [average, setAverage] = useState(0);
 
     const listingId = useParams().id;
@@ -35,9 +35,10 @@ export default function ListingPage() {
 
     const currentUser = useSelector(state => state.session?.user?.user?.username);
     const bookingModalContext = useSelector(state => state.createBookingModal.context);
+    const reviews = useSelector(state => state.reviews);
 
     const bookingId = useSelector(state => state.booking.id);
-    const userBooking = useSelector(state => state.userBookings.find(booking => booking.listingId === parseInt(listingId)));
+    const userBooking = useSelector(state => state.userBookings.find(booking => booking?.listingId === parseInt(listingId)));
 
     const isBookingPast = useBookingPast(userBooking);
 
@@ -61,10 +62,10 @@ export default function ListingPage() {
                 setDescription(listing.description);
                 setPrice(listing.price);
                 setHost(listing.User.username);
-                setReviews(listing.Bookings?.map(booking => booking.Review).filter(review => review !== null));
+                dispatch(setReviews(listing.Bookings?.map(booking => booking.Review).filter(review => review !== null)));
             }
         })();
-    }, [listingId]);
+    }, [listingId, dispatch]);
 
     useEffect(() => {
         if(reviews[0]) {
@@ -141,7 +142,7 @@ export default function ListingPage() {
                                     className="listing-page__cover-image-link"
                                     to="#"
                                 >
-                                    <img src={images[0]?.url} className="listing-page__cover-image"/>
+                                    <img src={images[0]?.url} className="listing-page__cover-image" alt="\A"/>
                                 </NavLink>
                             </div>
                             {images.length > 4 ? 
@@ -160,7 +161,7 @@ export default function ListingPage() {
                                             }}
                                         >
                                             <div className="listing-page__secondary-image-overlay">
-                                                <img src={image.url} className="listing-page__secondary-image"/>
+                                                <img src={image.url} className="listing-page__secondary-image" alt="\A"/>
                                             </div>
                                         </NavLink>
                                     ))}
@@ -179,7 +180,7 @@ export default function ListingPage() {
                                             }}
                                         >
                                             <div className="listing-page__secondary-image-overlay">
-                                                <img src={image.url} className="listing-page__secondary-image"/>
+                                                <img src={image.url} className="listing-page__secondary-image" alt="\A"/>
                                             </div>
                                         </NavLink>
                                     ))}
@@ -197,7 +198,7 @@ export default function ListingPage() {
                                     className="listing-page__cover-image-link"
                                     to="#"
                                 >
-                                    <img src={images[1]?.url} className="listing-page__cover-image"/>
+                                    <img src={images[1]?.url} className="listing-page__cover-image" alt="\A"/>
                                 </NavLink>
                             </div>
                             </>}
@@ -234,7 +235,7 @@ export default function ListingPage() {
                         {description}
                     </div>
                     <div className="listing-page__review-section">
-                    {userBooking && isBookingPast && (
+                    {userBooking && isBookingPast && !userBooking.Review && (
                         <ReviewCreate host={host} booking={userBooking}/>
                     )}
                         {(reviews.length > 0 && 

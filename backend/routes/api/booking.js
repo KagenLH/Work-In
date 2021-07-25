@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { requireAuth } = require("../../utils/auth");
-const { Booking } = require("../../db/models");
+const { Booking, Review, User } = require("../../db/models");
 
 const validateBooking = [
     check("startTime")
@@ -28,7 +28,9 @@ router.get('/:id',
             asyncHandler( async (req, res, next) => {
                 try {
                     const id = parseInt(req.params.id);
-                    const booking = await Booking.findByPk(id);
+                    const booking = await Booking.findByPk(id, {
+                        include: [Review, User]
+                    });
     
                     if(booking.userId === req.user.id) {
                         res.json(booking);
@@ -51,7 +53,8 @@ router.get('/',
                     const bookings = await Booking.findAll({
                         where: {
                             userId: id
-                        }
+                        },
+                        include: [Review, User]
                     });
 
                     res.json(bookings);

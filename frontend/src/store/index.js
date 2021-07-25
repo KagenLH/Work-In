@@ -7,6 +7,7 @@ import { imageViewerReducer } from "./imageViewer";
 import bookingReducer from "./booking";
 import userBookingReducer from "./userBookings";
 import searchBubbleReducer from "./search";
+import reviewsReducer from "./reviews";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     booking: bookingReducer,
     userBookings: userBookingReducer,
     search: searchBubbleReducer,
+    reviews: reviewsReducer,
 });
 
 let enhancer;

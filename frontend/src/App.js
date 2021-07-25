@@ -19,7 +19,6 @@ function App() {
   const signupModal = useSelector(state => state.signupModal.showModal);
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [userBookingsLoaded, setUserBookingsLoaded] = useState(false);
 
   useEffect(() => {
     async function tryRestoreSession() {
@@ -36,7 +35,6 @@ function App() {
       if(isLoaded) {
         try {
           await dispatch(fetchUserBookings());
-          setUserBookingsLoaded(true);
         } catch(err) {
           console.log("Failed to load all user bookings.");
         }

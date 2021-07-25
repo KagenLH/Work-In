@@ -36,7 +36,7 @@ export default function ListingSearch() {
             }
 
         })();
-    }, [location]);
+    }, [location, query]);
 
     return (
         <div
@@ -56,7 +56,7 @@ export default function ListingSearch() {
                                 <div className="listing-search__heart-container">
                                     <i className="far fa-heart"></i>
                                 </div>
-                                <img src={listing.Images[0].url} className="listing-search__listing-image"/>
+                                <img src={listing.Images[0].url} className="listing-search__listing-image" alt="\A"/>
                             </div>
                             <div className="listing-search__listing-info">
                                 <div className="listing-search__listing-name-price">

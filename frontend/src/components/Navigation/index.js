@@ -19,7 +19,7 @@ export default function Navigation() {
             {currentUrl.pathname.includes("listings") && 
             <>
                 <NavLink exact to="/" className="nav-bar-logo">
-                    <img src={logo} className="nav-bar-logo-image"/>
+                    <img src={logo} className="nav-bar-logo-image" alt="\A"/>
                 </NavLink>
                 <SearchBar context="nav"/>
             </>

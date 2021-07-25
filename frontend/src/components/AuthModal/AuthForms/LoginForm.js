@@ -21,7 +21,7 @@ export default function LoginForm() {
         if(credential.length && password.length) {
 
             try {
-                const user = await dispatch(loginUser({credential, password}));
+                await dispatch(loginUser({credential, password}));
                 dispatch(closeLoginModal());
             } catch (e) {
                 const err = await e.json();
