@@ -36,7 +36,7 @@ export default function ListingSearch() {
             }
 
         })();
-    }, [location, query]);
+    }, [location]);
 
     return (
         <div

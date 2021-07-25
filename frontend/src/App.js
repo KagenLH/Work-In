@@ -1,6 +1,8 @@
 import { Switch, Route } from "react-router";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+
 import { restoreLogin } from "./store/session";
 import { fetchUserBookings } from "./store/userBookings";
 
@@ -12,6 +14,7 @@ import ListingSearch from "./components/ListingSearch";
 import ListingPost from "./components/ListingPost";
 import ListingEdit from "./components/ListingEdit";
 import SearchOverlay from "./components/SearchOverlay";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +22,8 @@ function App() {
   const signupModal = useSelector(state => state.signupModal.showModal);
 
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const location = useLocation()
 
   useEffect(() => {
     async function tryRestoreSession() {
@@ -67,6 +72,7 @@ function App() {
           <ListingEdit/>
         </Route>
       </Switch>
+      <Footer show={location.pathname !== "/"}/>
     </>
   );
 }

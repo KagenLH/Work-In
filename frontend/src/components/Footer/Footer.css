@@ -1,0 +1,34 @@
+.footer {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 15px;
+    z-index: 4;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-description {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.footer-links {
+    display: flex;
+}
+
+.linkedin-logo {
+    margin-left: 10px;
+    font-size: 24px;
+    color: blue;
+}
+
+.github-logo {
+    color: black;
+    font-size: 24px;
+    margin-right: 10px;
+}

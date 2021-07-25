@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { createReview } from '../../../store/reviews';
+import { fetchUserBookings } from '../../../store/userBookings';
 
 import './ReviewCreate.css';
 
@@ -20,6 +21,8 @@ export default function ReviewCreate({ host, booking }) {
             numStars: reqNumStars,
             content,
         }));
+
+        await fetchUserBookings();
     };
 
     const clearInput = (e) => {
@@ -43,7 +46,7 @@ export default function ReviewCreate({ host, booking }) {
                                 checked={numStars === "5.0"}
                                 onChange={(e) => setNumStars(e.target.value)}
                                 className="radio-btn hide"/>
-                            <label for="review-create__form-star5" >☆</label>
+                            <label htmlFor="review-create__form-star5" >☆</label>
                             <input
                                 id="review-create__form-star4"
                                 name="numStars"
@@ -52,7 +55,7 @@ export default function ReviewCreate({ host, booking }) {
                                 checked={numStars === "4.0"}
                                 onChange={(e) => setNumStars(e.target.value)}
                                 className="radio-btn hide"/>
-                            <label for="review-create__form-star4" >☆</label>
+                            <label htmlFor="review-create__form-star4" >☆</label>
                             <input
                                 id="review-create__form-star3"
                                 name="numStars"
@@ -61,7 +64,7 @@ export default function ReviewCreate({ host, booking }) {
                                 checked={numStars === "3.0"}
                                 onChange={(e) => setNumStars(e.target.value)}
                                 className="radio-btn hide"/>
-                            <label for="review-create__form-star3" >☆</label>
+                            <label htmlFor="review-create__form-star3" >☆</label>
                             <input
                                 id="review-create__form-star2"
                                 name="numStars"
@@ -70,7 +73,7 @@ export default function ReviewCreate({ host, booking }) {
                                 checked={numStars === "2.0"}
                                 onChange={(e) => setNumStars(e.target.value)}
                                 className="radio-btn hide"/>
-                            <label for="review-create__form-star2" >☆</label>
+                            <label htmlFor="review-create__form-star2" >☆</label>
                             <input
                                 id="review-create__form-star1"
                                 name="numStars"
@@ -80,7 +83,7 @@ export default function ReviewCreate({ host, booking }) {
                                 onChange={(e) => setNumStars(e.target.value)}
                                 className="radio-btn hide"/>
                             <label for="review-create__form-star1" >☆</label>
-                            <div class="review-create__form-clear"></div>
+                            <div className="review-create__form-clear"></div>
                         </div>
                 <textarea 
                     className="review-create__form-input"

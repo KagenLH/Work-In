@@ -38,7 +38,7 @@ router.post('/',
 
                         // Check that the user that is making this request owns the booking the review is being made for
                         if(booking.userId === userId) {
-                            const [review, reviewCreated] = await Review.findOrCreate({
+                            await Review.findOrCreate({
                                 where: {
                                     [Op.and]: {
                                         bookingId,
@@ -51,6 +51,17 @@ router.post('/',
                                     numStars,
                                     content,
                                 },
+                                include: [User, Booking]
+                            });
+
+                            const review = await Review.findOne({
+                                where: {
+                                    [Op.and]: {
+                                        bookingId,
+                                        userId,
+                                    },
+                                },
+                                include: [User, Booking],
                             });
 
                             if(!review) {

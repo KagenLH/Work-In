@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { formatForReview } from '../../../utils/date';
 import { deleteReview } from '../../../store/reviews';
 import './ReviewSection.css';
+import { fetchUserBookings } from '../../../store/userBookings';
 
 export default function ReviewSection({ reviews, average }) {
 
@@ -16,6 +17,7 @@ export default function ReviewSection({ reviews, average }) {
 
     const destroyReview = async () => {
         await dispatch(deleteReview(userReview.id));
+        await fetchUserBookings();
         setUserReview(null);
     };
 
