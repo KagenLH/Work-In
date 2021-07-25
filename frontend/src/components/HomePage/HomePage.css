@@ -67,3 +67,15 @@
     width: 550px;
     height: 550px;
 }
+
+.homepage__welcome-message {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 50px;
+    font-weight: bold;
+    top: 32%;
+    color: rgba(255, 255, 255, 0.85);
+}
+
