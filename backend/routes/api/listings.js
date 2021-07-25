@@ -67,6 +67,9 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
                 },
             }],
         });
+
+        console.log(listing.Bookings.map(booking => booking.Review));
+
         res.json(listing);
     } catch (err) {
         next(err);

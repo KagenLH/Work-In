@@ -61,13 +61,15 @@ export default function ListingPage() {
                 setDescription(listing.description);
                 setPrice(listing.price);
                 setHost(listing.User.username);
-                setReviews(listing.Bookings.map(booking => booking.Review));
+                setReviews(listing.Bookings?.map(booking => booking.Review).filter(review => review !== null));
             }
         })();
     }, [listingId]);
 
     useEffect(() => {
-        setAverage(reviews.reduce((accum, review) => accum + review.numStars, 0) / reviews.length);
+        if(reviews[0]) {
+            setAverage(reviews.reduce((accum, review) => accum + review.numStars, 0) / reviews.length);
+        }
     }, [reviews])
 
     return (
@@ -223,7 +225,7 @@ export default function ListingPage() {
                             </div>
                         </div>
                         {host !== currentUser && (
-                            <BookingBox price={price}/>
+                            <BookingBox price={price} reviews={reviews} average={average}/>
                         )}
                     </div>
                     <div 

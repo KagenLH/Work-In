@@ -146,3 +146,27 @@
     flex-direction: column;
     align-items: center;
 }
+
+.booking-box__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.booking-box__review-info {
+    display: flex;
+    font-size: 14px;
+}
+
+.booking-box__title-score-number {
+    margin-left: 3px;
+    font-weight: bold;
+}
+
+.booking-box__title-score-reviews {
+    margin-left: 5px;
+}
+
+.booking-box__title-score-star {
+    color: salmon;
+}

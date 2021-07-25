@@ -10,7 +10,7 @@ import { formatDate, formatFromDb } from '../../../utils/date';
 import './BookingBox.css';
 
 
-export default function BookingBox({ price }) {
+export default function BookingBox({ price, reviews, average }) {
     const [startTime, setStartTime] = useState('');
     const [realStartTime, setRealStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
@@ -70,6 +70,19 @@ export default function BookingBox({ price }) {
                     <div className="booking-box__price">
                         <span className="booking-box__price-number">{`$${price}`}</span> / hour
                     </div>
+                    {reviews.length > 0 && (
+                    <div className="booking-box__review-info">
+                        <div className="booking-box__title-score-star">
+                            <i className="fas fa-star"></i>
+                        </div>
+                        <span className="booking-box__title-score-number">
+                            {average.toFixed(2)}
+                        </span>
+                        <span className="booking-box__title-score-reviews">
+                        {` (${reviews.length} reviews)`}
+                        </span>
+                    </div>
+                    )}
                 </div>
                 <div className="booking-box__choose-dates">
                     <div className="booking-box__choose-dates-wrapper">

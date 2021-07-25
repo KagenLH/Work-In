@@ -4,6 +4,8 @@ import { formatForReview } from '../../../utils/date';
 import './ReviewSection.css';
 
 export default function ReviewSection({ reviews, average }) {
+    if(!reviews.length) return null;
+
     return (
         <div className="review-section__container">
             <div className="review-section__header">
@@ -16,22 +18,22 @@ export default function ReviewSection({ reviews, average }) {
             </div>
             <div className="review-section__body">
                 {reviews.map(review => (
-                    <div className="review-section__review" key={review.id}>
+                    <div className="review-section__review" key={review?.id}>
                         <div className="review-header">
                             <div className="review-username">
-                                {review.User.username}
+                                {review?.User.username}
                             </div>
                             <div className="review-date">
-                                {formatForReview(new Date(review.Booking.startTime).toLocaleDateString("en-US", {
+                                {formatForReview(new Date(review?.Booking.startTime).toLocaleDateString("en-US", {
                                     weekday: 'long',
                                     year: 'numeric',
                                     month: 'long',
-                                    day: 'numeric'
+                                    day: 'numeric',
                                 }))}
                             </div>
                         </div>
                         <div className="review-content">
-                            {review.content}
+                            {review?.content}
                         </div>
                     </div>
                 ))}
