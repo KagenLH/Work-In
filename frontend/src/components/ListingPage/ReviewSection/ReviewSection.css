@@ -18,6 +18,8 @@
 
 .review-section__body {
     margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .review-section__review {
@@ -41,4 +43,69 @@
 .review-date {
     font-size: 16px;
     color: rgba(0, 0, 0, 0.6);
+}
+
+.review-section__body-user-review {
+    width: 100%;
+    position: relative;
+    padding: 15px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.review-user-review__title {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.review-user-review__header {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.review-user-review-username {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-user-review-date {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.review-user-review__content {
+    padding-left: 15px;
+}
+
+.review-user-review__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.review-user-review__edit {
+    background-color: transparent;
+    border: none;
+    color: rgba(100, 148, 237, 0.8);
+    cursor: pointer;
+}
+
+.review-user-review__edit:hover {
+    color: cornflowerblue;
+}
+
+.review-user-review__delete {
+    background-color: transparent;
+    border: none;
+    color: rgba(250, 128, 114, 0.8);
+    cursor: pointer;
+}
+
+.review-user-review__delete:hover {
+    color: salmon;
 }

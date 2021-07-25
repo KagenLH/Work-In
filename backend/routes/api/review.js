@@ -66,6 +66,29 @@ router.post('/',
                     }
 }));
 
+router.delete('/:id',
+                    requireAuth,
+                    asyncHandler( async (req, res, next) => {
+                        const userId = req.user.id;
+                        const reviewId = parseInt(req.params.id);
+
+                        try {
+                            const review = await Review.findByPk(reviewId);
+
+                            if(review && review.userId === userId) {
+                                await review.destroy();
+                                 
+                                res.json({ message: "Review deletion successful." });
+                            } else {
+                                const err = Error("You can only delete reviews that you own.");
+                                err.status = 401;
+                                next(err);
+                            }
+                        } catch (err) {
+                            next(err);
+                        }
+}));
+
 
 
 module.exports = router;

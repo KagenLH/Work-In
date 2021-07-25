@@ -4,6 +4,12 @@ import { formatForReview } from '../../../utils/date';
 import './ReviewSection.css';
 
 export default function ReviewSection({ reviews, average }) {
+
+    const user = useSelector(state => state.session.user?.user);
+
+    const userReview = reviews.find(review => review.userId === user?.id);
+    const otherReviews = reviews.filter(review => review.userId !== user?.id);
+
     if(!reviews.length) return null;
 
     return (
@@ -17,7 +23,42 @@ export default function ReviewSection({ reviews, average }) {
                 </div>
             </div>
             <div className="review-section__body">
-                {reviews.map(review => (
+                {!!userReview && (
+                    <div className="review-section__body-user-review">
+                        <div className="review-user-review__title">
+                            You left this review
+                        </div>
+                        <div className="review-user-review__header">
+                            <div className="review-user-review-username">
+                                {userReview?.User.username}
+                            </div>
+                            <div className="review-user-review-date">
+                                {formatForReview(new Date(userReview?.Booking.startTime).toLocaleDateString("en-US", {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                }))}
+                            </div>
+                        </div>
+                        <div className="review-user-review__content">
+                            {userReview.content}
+                        </div>
+                        <div className="review-user-review__buttons">
+                            <button
+                                className="review-user-review__edit"
+                            >
+                                Edit Review
+                            </button>
+                            <button 
+                                className="review-user-review__delete"
+                            >
+                                Delete Review
+                            </button>
+                        </div>
+                    </div>
+                )}
+                {otherReviews.map(review => (
                     <div className="review-section__review" key={review?.id}>
                         <div className="review-header">
                             <div className="review-username">
