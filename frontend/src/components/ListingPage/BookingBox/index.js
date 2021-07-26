@@ -38,7 +38,6 @@ export default function BookingBox({ price, reviews, average }) {
         let hours = (parseInt(endDate.subtract(days, 'days').diff(startDate, 'hours')));
         let minutes = parseInt(endDate.subtract(hours, 'hours').diff(startDate, 'minutes'));
 
-        console.log(days, hours, minutes);
 
         if(hours >= 12) {
             hours -= 12;
@@ -49,8 +48,6 @@ export default function BookingBox({ price, reviews, average }) {
                 days += 1;
             }
         }
-
-        console.log(days, hours, minutes);
 
         setFinalPrice((days * 12 + hours) * price);
         setDisplayDays(days);

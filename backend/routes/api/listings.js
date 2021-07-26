@@ -68,8 +68,6 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
             }],
         });
 
-        console.log(listing.Bookings.map(booking => booking.Review));
-
         res.json(listing);
     } catch (err) {
         next(err);
@@ -90,8 +88,6 @@ router.get('/', asyncHandler( async (req, res, next) => {
 router.post('/', multipleMulterUpload("images"), restoreUser, validateListing, asyncHandler( async (req, res, next) => {
     const { name, address, city, state, country, price, description } = req.body;
     const userId = req.user.id;
-
-    console.log(req.body);
 
     try {
         const newListing = await Listing.create({
@@ -153,7 +149,6 @@ router.delete("/:id", restoreUser, asyncHandler(async (req, res, next) => {
     const { id } = req.params
 
     const listing = await Listing.findByPk(id);
-    console.log(id);
     if(listing.userId === req.user.id) {
         await listing.destroy();
         res.json({ message: "Sucessfully deleted listing."});

@@ -37,7 +37,7 @@ export default function ConfirmBooking({ show, image, name, context, id }) {
             dispatch(addUserBooking(booking));
             dispatch(closeCreateBookingModal());
         } else {
-            console.log("Something went wrong.");
+
         }
     };
 

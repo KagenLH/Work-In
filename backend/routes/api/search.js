@@ -12,7 +12,6 @@ router.get("/:keyword",
             asyncHandler(async (req, res, next) => {
                 const keyword = req.keyword
 
-                console.log(keyword);
                 const results = await Listing.findAll({
                     where: {
                         [Op.or]: {

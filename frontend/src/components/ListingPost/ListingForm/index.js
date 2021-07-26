@@ -55,7 +55,7 @@ export default function ListingForm({ context }) {
                 }
             }
         } catch(e) {
-            console.log(e);
+
         }
 
     };
@@ -97,9 +97,7 @@ export default function ListingForm({ context }) {
             }
 
         } catch(err) {
-            console.log("Something went wrong.");
             const errors = await err.json();
-            console.log(errors.errors);
             setValidationErrors(errors.errors);
         }
     }
@@ -122,7 +120,6 @@ export default function ListingForm({ context }) {
                         setImages(listing.Images);
                     }
                 } catch (err) {
-                    console.log(err);
                 }
             })();
         }

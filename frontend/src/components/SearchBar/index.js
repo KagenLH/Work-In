@@ -34,7 +34,7 @@ export default function SearchBar({ context }) {
             setSearchResults(listings);
             dispatch(showSearchBubble());
         } else {
-            console.log("Something went wrong.");
+
         }
     };
 

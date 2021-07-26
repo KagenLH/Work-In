@@ -50,7 +50,7 @@ export const createReview = (payload) => async dispatch => {
         const review = await res.json();
         dispatch(addReview(review));
     } else {
-        console.log("Something went wrong creating the review.");
+
     }
 };
 

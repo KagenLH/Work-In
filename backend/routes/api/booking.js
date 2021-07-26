@@ -19,7 +19,6 @@ const validateBooking = [
 const router = express.Router();
 
 const logRequest = (req, res, next) => {
-    console.log(req.body);
     next();
 }
 

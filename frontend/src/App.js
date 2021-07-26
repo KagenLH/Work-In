@@ -41,7 +41,6 @@ function App() {
         try {
           await dispatch(fetchUserBookings());
         } catch(err) {
-          console.log("Failed to load all user bookings.");
         }
       }
     }
