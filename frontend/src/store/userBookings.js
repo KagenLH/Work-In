@@ -1,5 +1,6 @@
 import { csrfFetch } from "./csrf";
 
+
 const ADD_USER_BOOKING = 'userBookings/ADD_USER_BOOKING';
 const LOAD_USER_BOOKINGS = 'userBookings/LOAD_USER_BOOKINGS';
 const REMOVE_USER_BOOKING = 'userBookings/REMOVE_USER_BOOKING';
@@ -25,13 +26,15 @@ export const removeUserBooking = (payload) => {
     }
 };
 
-export const fetchUserBookings = () => async dispatch => {
-    const res = await csrfFetch('/api/bookings');
+export const fetchUserBookings = (user) => async dispatch => {
+    if(user) {
+        const res = await csrfFetch('/api/bookings');
 
-    if(res.ok) {
-        const bookings = await res.json();
-
-        return dispatch(loadUserBookings(bookings));
+        if(res.ok) {
+            const bookings = await res.json();
+    
+            return dispatch(loadUserBookings(bookings));
+        }
     }
 };
 

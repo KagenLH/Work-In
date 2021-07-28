@@ -32,16 +32,17 @@ function App() {
           const user = await dispatch(restoreLogin());
           if(user.user) {
             setIsLoaded(true);
+            return user.user
           }
         } catch (e) {
           
         }
       }
-      await tryRestoreLogin();
+      const user = await tryRestoreLogin();
 
       if(isLoaded) {
         try {
-          await dispatch(fetchUserBookings());
+          await dispatch(fetchUserBookings(user));
         } catch(err) {
         }
       }
