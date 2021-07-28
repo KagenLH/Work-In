@@ -26,12 +26,12 @@ const removeReview = (payload) => {
     };
 };
 
-const updateReview = (payload) => {
-    return {
-        type: REVIEWS_EDIT_REVIEW,
-        payload,
-    };
-};
+// const updateReview = (payload) => {
+//     return {
+//         type: REVIEWS_EDIT_REVIEW,
+//         payload,
+//     };
+// };
 
 export const createReview = (payload) => async dispatch => {
     const { bookingId, numStars, content } = payload;

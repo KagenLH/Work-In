@@ -29,8 +29,10 @@ function App() {
     async function tryRestoreSession() {
       async function tryRestoreLogin() {
         try {
-          await dispatch(restoreLogin());
-          setIsLoaded(true);
+          const user = await dispatch(restoreLogin());
+          if(user.user) {
+            setIsLoaded(true);
+          }
         } catch (e) {
           
         }
