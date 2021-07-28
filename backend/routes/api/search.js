@@ -39,4 +39,8 @@ router.get("/:keyword",
                 res.json(results);
 }));
 
+router.get("/", (req, res) => {
+    res.json([]);
+});
+
 module.exports = router;
