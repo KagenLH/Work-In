@@ -171,7 +171,7 @@ export default function BookingBox({ price, reviews, average }) {
                             dispatch(showCreateBookingModal());
                         }
                     }}
-                    disabled={!finalPrice || userBooking }
+                    disabled={!finalPrice || (userBooking && !isBookingPast)}
                 >
                     Reserve This Listing
                 </button>
