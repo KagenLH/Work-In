@@ -55,6 +55,33 @@ Open another terminal window, and from the root project directory navigate to th
 cd frontend
 npm start
 ```
+## Technical Challenges and Implementation Details
+### Image Viewer
+When creating the image viewing overlay there was no pre-existing template available for me to work from, so I approached this task with a mind for designing my own from the ground up. This presented a number of challenges.
+
+ #### 1. Displaying the image viewer properly
+The image viewer should appear on the page and cover every other element on the page. When it is on it should be the only feature on the page. I decided to approach this by creating a new component [ImageViewer](https://github.com/KagenLH/Work-In/wiki/React-Components-List) to hold the image viewer in that would be of fixed position, cover the entire page, and obscure everything behind it:
+```css
+.image-viewer__container {
+	position: fixed;
+	background: rgba(0, 0, 0, 0.9);
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+}
+```
+with a proper overlay in place, now the image viewer applet could be added over top of it.
+
+#### 2. Ability to scroll images and show the correct image
+I decided that the image viewer should only display one image at a time with the ability to switch between them with side arrow buttons. In order to manage the image that should be shown at any given time, a new `imageViewer` piece of global state was created and configured in the Redux store.  The `ImageViewer` component would read that slice of state to determine the `currentImage`, and display that image accordingly:
+```jsx
+<div
+className="sliding-image__container"
+>
+	<ImageViewerImage  image={currentImage}/>
+</div>
+```
+The images for the current listing page would be passed as a prop to the ImageViewer component, and anytime that one of the side arrow buttons is clicked, the `imageViewer.currentImage` slice of state is updated to the value of the next index in the images array.
 
 ## Future features and plans
 
