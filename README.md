@@ -11,7 +11,8 @@ You can try this app at the following link: [https://work-in-live.herokuapp.com/
  ## Technologies 
 - Express.js
 - Sequelize
-- React
+- PostgreSQL
+- React.js
 - Redux
 - Node.js
 - AWS S3
