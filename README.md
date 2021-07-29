@@ -12,6 +12,7 @@ You can try this app at the following link: [https://work-in-live.herokuapp.com/
 
 ![](https://lh6.googleusercontent.com/HdhVkPLn-8LnrA-qTLnLkNtR4Wh_XOgWIlpORwd2UEUHcNv-Ucjq_1FlcGlRS4ZYDKQ5a862EmiIhC-Yun6fr6xgWZCIBjcHr045eBwo40magSnPHpYdHsncJS-Rmkxsa635RAE)
   ## Relevant Documents
+  - [Feature List](https://github.com/KagenLH/Work-In/wiki/Feature-List)
   - [Database Schema](https://github.com/KagenLH/Work-In/wiki/Database-Schema)
   - [React Component List](https://github.com/KagenLH/Work-In/wiki/React-Components-List)
   ## Running Work-In on your local machine
