@@ -15,6 +15,7 @@ You can try this app at the following link: [https://work-in-live.herokuapp.com/
   - [Feature List](https://github.com/KagenLH/Work-In/wiki/Feature-List)
   - [Database Schema](https://github.com/KagenLH/Work-In/wiki/Database-Schema)
   - [React Component List](https://github.com/KagenLH/Work-In/wiki/React-Components-List)
+  - [Frontend Routes](https://github.com/KagenLH/Work-In/wiki/Frontend-Routes)
   ## Running Work-In on your local machine
 Before running Work-In in the development environment you'll need an up to date installation of Node.js and PostgreSQL. These instructions will assume that you already have both of those already installed and configured. Also assure ahead of time that no other processes are running on port 5000.
 
