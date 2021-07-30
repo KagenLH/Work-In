@@ -142,6 +142,41 @@ className="sliding-image__container"
 ```
 The images for the current listing page would be passed as a prop to the ImageViewer component, and anytime that one of the side arrow buttons is clicked, the `imageViewer.currentImage` slice of state is updated to the value of the next index in the images array.
 
+### Adding/Removing Images from a Listing with the Edit Listing Form
+Users editing their listings should be able to add new images to their listing, or remove existing ones. This should be facilitated in a pleasant, graphical, and user friendly manner. This required a significantly more sophisticated approach than editing the existing text fields for the listing.
+
+#### 1. Separating already existing images from new user uploads
+Images that are already attached to the listing already have rows in the database. They are displayed and added into the form by their access URL on AWS, and thus sending in their raw data is not possible using the same methods that the Listing Post uses without doing extra work. Furthermore, there is simply no need to send these images in again with the edit request since they already exist. Therefore separate containers and management are needed for images the user has already created and images that the user is currently adding. I decided to implement this by separating the two form fields into two separate slices of local component state:
+
+```jsx
+    const [images, setImages] = useState([]);
+    const [newImages, setNewImages] = useState([]);
+```
+Each is rendered in a separate portion of the DOM using their respective piece of state. When the time comes to submit the form, only the newImages array is appended into the FormData object to be sent to the server.
+
+#### 2. Cleanly removing existing images from listings
+When the user clicks on one of the images they have in the form, it will be removed. If its an image they have just added, it will simply be removed from the form. If its an image that already existed on their listing, it will be destroyed in the database as well. Because each image has a row in the table and in the database the listing owns the image via a foreign key on the image table, simply deleting the image in the database is sufficient to detach it from the listing.
+
+First, send the appropriate request to the API server:
+```jsx
+        const res = await csrfFetch(`/api/images/${e.target.getAttribute("urlkey")}`, {
+            method: 'DELETE',
+        });
+```
+Where `urlkey` is a custom attribute given to each image indicating the unique ID for that image. 
+
+Next, handle the request and destroy the image on the backend:
+```js
+    const image = await Image.findByPk(imageId);
+    const listing = await Listing.findByPk(image.listingId);
+    if(userId === listing.userId) {
+        await image.destroy();
+        res.json({ message: "Image deletion was successful." });
+    } else {
+        const err = new Error("You can only delete images that you own.");
+        next(err);
+    }
+```
 ## Future features and plans
 
 * User Profiles and uploaded avatars
