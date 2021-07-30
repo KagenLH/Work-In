@@ -126,7 +126,7 @@ The image viewer should appear on the page and cover every other element on the 
 	background: rgba(0, 0, 0, 0.9);
 	width: 100%;
 	height: 100%;
-	z-index: 99;
+	z-index: 5;
 }
 ```
 with a proper overlay in place, now the image viewer applet could be added over top of it.
