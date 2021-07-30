@@ -1,10 +1,23 @@
-# Work-In
+# Table of Contents
+1. [Welcome to Work-In!](https://github.com/KagenLH/Work-In#welcome-to-work-in)
+2. [Technologies](https://github.com/KagenLH/Work-In#technologies)
+3. [Relevant Documents](https://github.com/KagenLH/Work-In#relevant-documents)
+4. [Navigating and using Work-In](https://github.com/KagenLH/Work-In#navigating-and-using-work-in)
+     * [Home](https://github.com/KagenLH/Work-In#home)
+     * [Listings Search](https://github.com/KagenLH/Work-In#listings-search)
+     * [Individual Listing Page](https://github.com/KagenLH/Work-In#individual-listing-page)
+5. [Running Work-In on your local machine](https://github.com/KagenLH/Work-In#running-work-in-on-your-local-machine)
+6. [Technical Challenges and Implementation Details](https://github.com/KagenLH/Work-In#technical-challenges-and-implementation-details)
+    * [Image Viewer](https://github.com/KagenLH/Work-In#image-viewer)
+      - [Displaying the image viewer properly](https://github.com/KagenLH/Work-In#1-displaying-the-image-viewer-properly)
+      - [Ability to scroll images and show the correct image](https://github.com/KagenLH/Work-In#2-ability-to-scroll-images-and-show-the-correct-image)
+    * [Adding/Removing Images from a listing with the edit listing form](https://github.com/KagenLH/Work-In#addingremoving-images-from-a-listing-with-the-edit-listing-form)
+      - [Separating already existing images from new user uploads](https://github.com/KagenLH/Work-In#1-separating-already-existing-images-from-new-user-uploads)
+      - [Cleanly removing existing images from listings](https://github.com/KagenLH/Work-In#2-cleanly-removing-existing-images-from-listings)
+7. [Future Features and Plans](https://github.com/KagenLH/Work-In#future-features-and-plans)
 
-Work-In is an app/website structurally inspired by the online travel booking site Airbnb. This is a clone that aims to use the model of the online reservation system for workspaces and short-term/one-time rental of establishments such as offices, rooms, clinics, etc.
-
-  
-
-# Welcome to Work-In!
+## Welcome to Work-In!
+Work-In is a web application inspired by the online travel booking site Airbnb. This is a clone that aims to use the model of the online reservation system for workspaces and short-term/one-time rental of establishments such as offices, rooms, and clinics.
 
 You can try this app at the following link: [https://work-in-live.herokuapp.com/](https://work-in-live.herokuapp.com/)
 
