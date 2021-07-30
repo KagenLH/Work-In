@@ -88,8 +88,19 @@ First install dependencies:
 cd Work-In
 npm install
 ```
-  then migrate and seed the database
+Create a .env file in the root of the backend folder. Copy the values from the .env.example file. You can either copy all of the values verbatim or change the values to values of your liking. Keep in mind that you won't be able to add new images/listings with your local application because it requires the secret AWS access key. You can change the JWT_SECRET if you like. Your .env should look like this:
+```
+PORT=5000
+DB_USERNAME=workin_app
+DB_DATABASE=workin_development
+DB_PASSWORD=password 
+DB_HOST=localhost
+JWT_SECRET=secret 
+JWT_EXPIRES_IN=608000
+```
+  Now you can create, migrate, and seed the database
 ```bash
+npm run sequelize db:create
 npm run sequelize db:migrate
 npm run sequelize db:seed:all
 ```
